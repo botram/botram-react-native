@@ -5,7 +5,6 @@ import {
   Footer,
   FooterTab,
   Button,
-  Icon,
 } from 'native-base';
 import {
   StyleSheet,
@@ -13,9 +12,13 @@ import {
   View,
   Image,
 } from 'react-native';
-import iconhome from '../images/home.png';
-import iconfav from '../images/fav.png';
-import iconcamera from '../images/camera.png';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+const iconhome = (<Icon name="home" size={30} color="#9E9E9E" />)
+const iconcamera = (<Icon name="photo-camera" size={30} color="#FFFFFF" />)
+const iconfav = (<Icon name="favorite" size={30} color="#FFFFFF" />)
+
 var {width, height} = require('Dimensions').get('window');
 
 export default class Home extends Component {
@@ -33,19 +36,19 @@ export default class Home extends Component {
         </View>
 
         <Footer >
-          <FooterTab style={{backgroundColor:'#BDBDBD',}}>
+          <FooterTab style={{backgroundColor:'#E91E63',}}>
             <Button onPress={() => {
               this.props.navigator.push({index:1})
             }}>
-            <Image style={{width: 30, height: 30,}} source={iconfav}/>
+              {iconfav}
             </Button>
             <Button>
-              <Image style={{width: 30, height: 30,}} source={iconhome}/>
+              {iconhome}
             </Button>
             <Button onPress={() => {
               this.props.navigator.push({index:2})
             }}>
-            <Image style={{width: 30, height: 30,}} source={iconcamera}/>
+              {iconcamera}
             </Button>
           </FooterTab>
         </Footer>
