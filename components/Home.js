@@ -15,9 +15,11 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const iconhome = (<Icon name="home" size={30} color="#9E9E9E" />)
-const iconcamera = (<Icon name="photo-camera" size={30} color="#FFFFFF" />)
-const iconfav = (<Icon name="favorite" size={30} color="#FFFFFF" />)
+import FoodItemCard from './Home/FoodItemCard'
+
+const iconhome = (<Icon name="home" size={30} color="#b71c1c" />)
+const iconcamera = (<Icon name="photo-camera" size={30} color="#6C7A89" />)
+const iconfav = (<Icon name="favorite" size={30} color="#6C7A89" />)
 
 var {width, height} = require('Dimensions').get('window');
 
@@ -26,17 +28,17 @@ export default class Home extends Component {
     return (
       <Container>
         <View style={styles.container}>
-          <Text style={styles.judul}>
+          {/* <Text style={styles.judul}>
             Welcome to Botram
           </Text>
           <Text style={styles.instructions}>
             Sini Makan!
-          </Text>
-
+          </Text> */}
+          <FoodItemCard />
         </View>
 
         <Footer >
-          <FooterTab style={{backgroundColor:'#E91E63',}}>
+          <FooterTab style={{backgroundColor:'#ECECEC',}}>
             <Button onPress={() => {
               this.props.navigator.push({index:1})
             }}>
