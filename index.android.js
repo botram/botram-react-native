@@ -17,10 +17,7 @@ export default class Botram extends Component {
 
   render() {
     const appThis = this
-    BackAndroid.addEventListener('hardwareBackPress', function() {
-      console.log('handle back press');
-      return true;
-    })
+
     return (
 
       <Navigator

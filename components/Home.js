@@ -1,33 +1,20 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+  Container,
+  Content,
+  Footer,
+  FooterTab,
+  Button,
+} from 'native-base';
+
+var {width, height} = require('Dimensions').get('window');
 
 export default class Home extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to Botram
-        </Text>
-      </View>
+      <Container>
+
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});
