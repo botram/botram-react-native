@@ -15,27 +15,24 @@ import {
 
 var {width, height} = require('Dimensions').get('window');
 
-export default class Home extends Component {
+export default class Favorites extends Component {
   render() {
     return (
       <Container>
         <View style={styles.container}>
           <Text style={styles.judul}>
-            Welcome to Botram
-          </Text>
-          <Text style={styles.instructions}>
-            Sini Makan!
+            All Favorite Foods
           </Text>
         </View>
 
         <Footer >
           <FooterTab style={{backgroundColor:'#616161',}}>
-            <Button onPress={() => {
-              this.props.navigator.push({index:1})
-            }}>
+            <Button>
               <Text style={styles.txtfooter}>Favorites</Text>
             </Button>
-            <Button>
+            <Button onPress={() => {
+              this.props.navigator.popToTop()
+            }}>
               <Text style={styles.txtfooter}>Home</Text>
             </Button>
             <Button onPress={() => {

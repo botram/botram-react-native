@@ -15,32 +15,29 @@ import {
 
 var {width, height} = require('Dimensions').get('window');
 
-export default class Home extends Component {
+export default class Camera extends Component {
   render() {
     return (
       <Container>
         <View style={styles.container}>
           <Text style={styles.judul}>
-            Welcome to Botram
-          </Text>
-          <Text style={styles.instructions}>
-            Sini Makan!
+            This is Camera Page
           </Text>
         </View>
 
         <Footer >
           <FooterTab style={{backgroundColor:'#616161',}}>
-            <Button onPress={() => {
+            <Button  onPress={() => {
               this.props.navigator.push({index:1})
             }}>
               <Text style={styles.txtfooter}>Favorites</Text>
             </Button>
-            <Button>
+            <Button onPress={() => {
+              this.props.navigator.popToTop()
+            }}>
               <Text style={styles.txtfooter}>Home</Text>
             </Button>
-            <Button onPress={() => {
-              this.props.navigator.push({index:2})
-            }}>
+            <Button>
               <Text style={styles.txtfooter}>Camera</Text>
             </Button>
           </FooterTab>
@@ -65,10 +62,5 @@ var styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });

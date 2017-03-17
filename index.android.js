@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import HomeScene from './components/Home'
+import FavoritesScene from './components/Favorites'
+import CameraScene from './components/Camera'
 import {
   AppRegistry,
   Navigator,
@@ -15,7 +17,12 @@ export default class Botram extends Component {
     }
     else if (route.index === 1) {
       return (
-        <HomeScene route={route} navigator={navigator} />
+        <FavoritesScene route={route} navigator={navigator} />
+      )
+    }
+    else if (route.index === 2) {
+      return (
+        <CameraScene route={route} navigator={navigator} />
       )
     }
   }
