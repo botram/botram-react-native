@@ -1,48 +1,48 @@
 import React, { Component } from 'react';
 import {
   Container,
-  Content,
   Footer,
   FooterTab,
   Button,
 } from 'native-base';
 import {
+  BackAndroid,
   StyleSheet,
   Text,
   View,
-  Image,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const iconhome = (<Icon name="home" size={30} color="#9E9E9E" />)
+const iconhome = (<Icon name="home" size={30} color="#FFFFFF" />)
 const iconcamera = (<Icon name="photo-camera" size={30} color="#FFFFFF" />)
-const iconfav = (<Icon name="favorite" size={30} color="#FFFFFF" />)
+const iconfav = (<Icon name="favorite" size={30} color="#9E9E9E" />)
 
 var {width, height} = require('Dimensions').get('window');
 
-export default class Home extends Component {
+export default class Favorites extends Component {
   render() {
+    const appthis = this;
+    BackAndroid.addEventListener('hardwareBackPress', function() {
+      appthis.props.navigator.popToTop()
+      return true;
+    })
     return (
       <Container>
         <View style={styles.container}>
           <Text style={styles.judul}>
-            Welcome to Botram
+            All Favorite Foods
           </Text>
-          <Text style={styles.instructions}>
-            Sini Makan!
-          </Text>
-
         </View>
 
         <Footer >
           <FooterTab style={{backgroundColor:'#E91E63',}}>
-            <Button onPress={() => {
-              this.props.navigator.push({index:1})
-            }}>
+            <Button>
               {iconfav}
             </Button>
-            <Button>
+            <Button onPress={() => {
+              this.props.navigator.popToTop()
+            }}>
               {iconhome}
             </Button>
             <Button onPress={() => {
