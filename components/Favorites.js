@@ -11,7 +11,11 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
 } from 'react-native';
+import iconhome from '../images/home.png';
+import iconfav from '../images/fav.png';
+import iconcamera from '../images/camera.png';
 
 var {width, height} = require('Dimensions').get('window');
 
@@ -26,19 +30,19 @@ export default class Favorites extends Component {
         </View>
 
         <Footer >
-          <FooterTab style={{backgroundColor:'#616161',}}>
+          <FooterTab style={{backgroundColor:'#BDBDBD',}}>
             <Button>
-              <Text style={styles.txtfooter}>Favorites</Text>
+              <Image style={{width: 30, height: 30,}} source={iconfav}/>
             </Button>
             <Button onPress={() => {
               this.props.navigator.popToTop()
             }}>
-              <Text style={styles.txtfooter}>Home</Text>
+              <Image style={{width: 30, height: 30,}} source={iconhome}/>
             </Button>
             <Button onPress={() => {
               this.props.navigator.push({index:2})
             }}>
-              <Text style={styles.txtfooter}>Camera</Text>
+              <Image style={{width: 30, height: 30,}} source={iconcamera}/>
             </Button>
           </FooterTab>
         </Footer>
@@ -53,10 +57,7 @@ var styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  txtfooter: {
-    color: '#FFFFFF',
+    backgroundColor: '#FFFFFF',
   },
   judul: {
     fontSize: 20,
