@@ -13,9 +13,6 @@ export default class Home extends Component {
         <Text style={styles.welcome}>
           Welcome to Botram
         </Text>
-        <Text style={styles.instructions}>
-          Sini Makan!
-        </Text>
       </View>
     );
   }

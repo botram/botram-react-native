@@ -13,11 +13,6 @@ export default class Botram extends Component {
         <HomeScene route={route} navigator={navigator} />
       )
     }
-    else if (route.index === 1) {
-      return (
-        <HomeScene route={route} navigator={navigator} />
-      )
-    }
   }
 
   render() {
