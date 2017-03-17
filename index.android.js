@@ -1,53 +1,41 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
+import HomeScene from './components/Home'
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
-  View
+  Navigator,
+  BackAndroid,
 } from 'react-native';
 
 export default class Botram extends Component {
+  renderNewScene (route, navigator) {
+    if (route.index === 0) {
+      return (
+        <HomeScene route={route} navigator={navigator} />
+      )
+    }
+    else if (route.index === 1) {
+      return (
+        <HomeScene route={route} navigator={navigator} />
+      )
+    }
+  }
+
   render() {
+    const appThis = this
+    BackAndroid.addEventListener('hardwareBackPress', function() {
+      console.log('handle back press');
+      return true;
+    })
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
+
+      <Navigator
+        initialRoute={{index: 0 }}
+        renderScene={appThis.renderNewScene}
+        configureScene={(route, routeStack) =>
+          Navigator.SceneConfigs.FadeAndroid}
+      />
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('Botram', () => Botram);
