@@ -4,10 +4,11 @@ import HomeScene from './components/Home';
 import FavoritesScene from './components/Favorites';
 import LoginScene from './components/LoginScene';
 import PreCameraScene from './components/PreCamera';
-import UserProfileScene from './components/UserProfile'
-import CameraScene from './components/Camera'
-import FoodDetails from './components/FoodDetails'
-import MenuDrawer from './components/MenuDrawer'
+import UserProfileScene from './components/UserProfile';
+import CameraScene from './components/Camera';
+import FoodDetails from './components/FoodDetails';
+import MenuDrawer from './components/MenuDrawer';
+import SearchScene from './components/SearchScene';
 
 
 import {
@@ -49,6 +50,10 @@ export default class Botram extends Component {
         <UserProfileScene route={route} navigator={navigator} />
       )
     }
+    else if (route.title === "SearchScene")
+      return (
+        <SearchScene route={route} navigator={navigator} />
+      )
   }
 
 

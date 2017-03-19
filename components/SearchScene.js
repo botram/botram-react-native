@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Container,
-  Footer,
-  FooterTab,
-  Button,
-} from 'native-base';
+import { Container, Content, Header, Item, Input, Button, Footer, FooterTab } from 'native-base';
 import {
   BackAndroid,
   StyleSheet,
@@ -16,12 +11,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const iconhome = (<Icon name="home" size={30} color="#6C7A89" />)
 const iconcamera = (<Icon name="photo-camera" size={30} color="#6C7A89" />)
-const iconfav = (<Icon name="favorite" size={30} color="#b71c1c" />)
-const iconSearch = (<Icon name="search" size={30}color="#6C7A89" />)
+const iconfav = (<Icon name="favorite" size={30} color="#6C7A89" />)
+const iconSearch = (<Icon name="search" size={30}color="#b71c1c" />)
 
 var {width, height} = require('Dimensions').get('window');
 
-export default class Favorites extends Component {
+export default class Search extends Component {
   render() {
     const appthis = this;
     BackAndroid.addEventListener('hardwareBackPress', function() {
@@ -30,15 +25,26 @@ export default class Favorites extends Component {
     })
     return (
       <Container>
-        <View style={styles.container}>
-          <Text style={styles.judul}>
-            All Favorite Foods
-          </Text>
-        </View>
+        <Header searchBar rounded style={{backgroundColor: '#B71C1C'}}>
 
-        <Footer >
-          <FooterTab style={{backgroundColor:'#ECECEC',}}>
-            <Button>
+            <Item>
+                <Icon name="search" color={'#B71C1C'} size={25}/>
+                <Input placeholder="Search" />
+            </Item>
+            <Button transparent>
+              <Text style={{color: '#B71C1C'}}>Search</Text>
+            </Button>
+        </Header>
+
+        <Content>
+
+        </Content>
+
+        <Footer style={{position: 'absolute', bottom:0, left: 0, right: 0}}>
+          <FooterTab style={{backgroundColor:'#ECECEC'}}>
+            <Button onPress={() => {
+              this.props.navigator.push({title:'FavoritesScene'})
+            }}>
               {iconfav}
             </Button>
             <Button onPress={() => {
@@ -46,9 +52,7 @@ export default class Favorites extends Component {
             }}>
               {iconhome}
             </Button>
-            <Button onPress={() => {
-              this.props.navigator.push({title:'SearchScene'})
-            }}>
+            <Button>
             {iconSearch}
             </Button>
             <Button onPress={() => {
