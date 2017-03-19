@@ -66,7 +66,7 @@ export default class Home extends Component {
         return (
             <Drawer
               ref={(ref) => { this._drawer = ref; }}
-              content={<SideBar navigator={this._navigator} />}
+              content={<SideBar navigator={this._navigator} nav={this.props.navigator} />}
               onClose={() => this.closeDrawer()}
               style={{width:100}}
             >
@@ -87,7 +87,7 @@ export default class Home extends Component {
                 <Footer >
                   <FooterTab style={{backgroundColor:'#ECECEC',}}>
                     <Button onPress={() => {
-                      this.props.navigator.push({index:1})
+                      this.props.navigator.push({title:'FavoritesScene'})
                     }}>
                       {iconfav}
                     </Button>
@@ -95,7 +95,7 @@ export default class Home extends Component {
                       {iconhome}
                     </Button>
                     <Button onPress={() => {
-                      this.props.navigator.push({index:2})
+                      this.props.navigator.push({title:'CameraScene'})
                     }}>
                       {iconcamera}
                     </Button>

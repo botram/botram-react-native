@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, ScrollView,  } from 'react-native';
 import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Button, Right } from 'native-base'
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -44,7 +44,7 @@ export default class FoodItemCard extends Component {
                       <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Stok : 25 Porsi</Text></Col>
                       <Col size={23}>
                          <Button style={{width: width/5, height: height/25, backgroundColor: '#00B16A'}} onPress={() => {
-                           this.props.navigator.push({index:4})
+                           this.props.navigator.push({title:'FoodDetails'})
                          }}>
                            <Text style={{color: '#FFFFFF'}}>Detail</Text>
                          </Button>

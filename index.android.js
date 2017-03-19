@@ -7,6 +7,7 @@ import PreCameraScene from './components/PreCamera';
 import UserProfileScene from './components/UserProfile'
 import CameraScene from './components/Camera'
 import FoodDetails from './components/FoodDetails'
+import MenuDrawer from './components/MenuDrawer'
 
 
 import {
@@ -18,34 +19,34 @@ import {
 export default class Botram extends Component {
 
   renderNewScene (route, navigator) {
-    if (route.index === 0) {
+    if (route.title === 'LoginScene') {
       return(
         <LoginScene route={route} navigator={navigator} />
       )
     }
-    else if (route.index === 1) {
+    else if (route.title === 'HomeScene') {
       return (
         <HomeScene route={route} navigator={navigator} />
       )
     }
-    else if (route.index === 2) {
+    else if (route.title === 'FavoritesScene') {
       return (
         <FavoritesScene route={route} navigator={navigator} />
       )
     }
-    else if (route.index === 3) {
+    else if (route.title === 'PreCameraScene') {
       return (
         <PreCameraScene route={route} navigator={navigator} />
       )
-    }  
-    else if (route.index === 4) {
-      return (
-        <UserProfileScene route={route} navigator={navigator} />
-      )
     }
-    else if (route.index === 5) {
+    else if (route.title === 'FoodDetails') {
       return (
         <FoodDetails route={route} navigator={navigator} />
+      )
+    }
+    else if (route.title === 'UserProfileScene') {
+      return (
+        <UserProfileScene route={route} navigator={navigator} />
       )
     }
   }
@@ -55,7 +56,7 @@ export default class Botram extends Component {
     const appThis = this
     return (
       <Navigator
-        initialRoute={{index: 1 }}
+        initialRoute={{title: 'HomeScene' }}
         renderScene={appThis.renderNewScene}
         configureScene={(route, routeStack) =>
           Navigator.SceneConfigs.FadeAndroid}

@@ -16,7 +16,8 @@ import {
   StyleSheet,
   Text,
   Image,
-  View
+  View,
+  TouchableOpacity,
 } from 'react-native';
 import thumb from '../dummyFiles/thumb.jpg'
 var {width, height} = require('Dimensions').get('window');
@@ -38,7 +39,13 @@ export default class MenuDrawer extends Component {
           </Row>
           <Row style={{height: 45,justifyContent: 'center',paddingTop:10,}}>
             <Col size={20}><Text style={styles.menuicon}>{iconperson}</Text></Col>
-            <Col size={80}><Text style={styles.txtmenu}>Profile</Text></Col>
+            <Col size={80}>
+              <TouchableOpacity onPress={() => {
+                this.props.nav.push({title:'UserProfileScene'})
+              }}>
+                <Text style={styles.txtmenu}>Profile</Text>
+              </TouchableOpacity>
+            </Col>
           </Row>
           <Row style={{height: 45,justifyContent: 'center',paddingTop:10,}}>
             <Col size={20}><Text style={styles.menuicon}>{iconfood}</Text></Col>

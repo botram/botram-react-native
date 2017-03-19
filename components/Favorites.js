@@ -46,7 +46,7 @@ export default class Favorites extends Component {
               {iconhome}
             </Button>
             <Button onPress={() => {
-              this.props.navigator.push({index:2})
+              this.props.navigator.push({title:'CameraScene'})
             }}>
               {iconcamera}
             </Button>

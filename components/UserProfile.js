@@ -10,6 +10,7 @@ import {
   Text,
   View,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
@@ -34,7 +35,10 @@ export default class UserProfile extends Component {
         <View>
           <Row style={{height: 50,backgroundColor:'#B71C1C',}}>
            <Col size={35}>
-             {iconBack}
+             <TouchableOpacity  onPress={() => {this.props.navigator.popToTop()}}>
+               <Text style={{padding:10,}}>{iconBack}</Text>
+             </TouchableOpacity>
+
            </Col>
            <Col size={65}><Text style={{padding:10,color: '#FFFFFF',fontSize:22, }}>User Profile</Text></Col>
           </Row>
