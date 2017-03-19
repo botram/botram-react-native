@@ -5,6 +5,7 @@ import FavoritesScene from './components/Favorites';
 import LoginScene from './components/LoginScene';
 import CameraScene from './components/Camera'
 import PreCameraScene from './components/PreCamera'
+import FoodDetails from './components/FoodDetails'
 
 import {
   AppRegistry,
@@ -33,6 +34,11 @@ export default class Botram extends Component {
     else if (route.index === 3) {
       return (
         <PreCameraScene route={route} navigator={navigator} />
+      )
+    }
+    else if (route.index === 4) {
+      return (
+        <FoodDetails route={route} navigator={navigator} />
       )
     }
   }
