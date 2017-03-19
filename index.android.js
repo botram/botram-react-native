@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import HomeScene from './components/Home';
+import HomeScene from './components/MenuDrawer';
 import FavoritesScene from './components/Favorites';
 import LoginScene from './components/LoginScene';
 import CameraScene from './components/Camera'
@@ -42,7 +42,7 @@ export default class Botram extends Component {
     const appThis = this
     return (
       <Navigator
-        initialRoute={{index: 0 }}
+        initialRoute={{index: 1 }}
         renderScene={appThis.renderNewScene}
         configureScene={(route, routeStack) =>
           Navigator.SceneConfigs.FadeAndroid}
