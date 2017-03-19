@@ -35,16 +35,6 @@ export default class Botram extends Component {
         <PreCameraScene route={route} navigator={navigator} />
       )
     }
-    else if (route.index === 4) {
-      return (
-        <PreCameraScene route={route} navigator={navigator} />
-      )
-    }
-    else if (route.index === 3) {
-      return (
-        <CameraScene route={route} navigator={navigator} />
-      )
-    }
   }
 
 

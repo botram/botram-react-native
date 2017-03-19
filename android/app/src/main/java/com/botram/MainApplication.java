@@ -37,9 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
           new FBSDKPackage(mCallbackManager),
           new VectorIconsPackage(),
-          new RCTCameraPackage(),
-          new VectorIconsPackage()
-
+          new RCTCameraPackage()
       );
     }
   };
