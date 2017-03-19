@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import FBSDK, { GraphRequest, GraphRequestManager, LoginManager, LoginButton, AccessToken } from 'react-native-fbsdk';
 import { View } from 'react-native';
 
-export default class Botram extends Component {
+export default class FbButton extends Component {
 
-  // componentWillMount(){
-  //   this.props.navigator.push({index:1})
-  // }
-
-  goToHomeScene = () => this.props.navigator.resetTo({index:1})
+  goToHomeScene = () => this.props.navigator.resetTo({title:'HomeScene'})
 
   render(){
     return(

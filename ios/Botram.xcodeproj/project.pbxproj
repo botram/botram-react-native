@@ -82,7 +82,11 @@
 		F0DA65EDD79642AF9DD92A9E /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4B1F122538B44E0B0079255 /* Zocial.ttf */; };
 		DA5CD6BADD434AB5A0E49FBC /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3E81175F3A43C5AB977E9C /* libRCTFBSDK.a */; };
 		55B36017BA6548ACA6AB96CB /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B5950913A740BEB258B0A2 /* libRCTCamera.a */; };
-
+		BF026CE4512B4358815B0786 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3209AA164BCD4FFD98C63D79 /* libRNGoogleSignin.a */; };
+		1DBE13724E414DA58AD9E0CD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 239CF9005B9F4B97B195256D /* libz.tbd */; };
+		E2B16EEB1E62442BB5A64615 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F552FA73621445F78E19C7DC /* SafariServices.framework */; };
+		FA4422017A0346DCA608C00C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C9FE50F827B40F4867DEE46 /* SystemConfiguration.framework */; };
+		4274E99C68A64DABAF2129E4 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F06375667F4271B6E3AF78 /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -352,7 +356,12 @@
 		DC3E81175F3A43C5AB977E9C /* libRCTFBSDK.a */ = {isa = PBXFileReference; name = "libRCTFBSDK.a"; path = "libRCTFBSDK.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		3A8DD85B2D4849AE85E87775 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; name = "RCTCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		84B5950913A740BEB258B0A2 /* libRCTCamera.a */ = {isa = PBXFileReference; name = "libRCTCamera.a"; path = "libRCTCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-
+		6EB6A508C73A4680A7592169 /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; name = "RNGoogleSignin.xcodeproj"; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		3209AA164BCD4FFD98C63D79 /* libRNGoogleSignin.a */ = {isa = PBXFileReference; name = "libRNGoogleSignin.a"; path = "libRNGoogleSignin.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		239CF9005B9F4B97B195256D /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		F552FA73621445F78E19C7DC /* SafariServices.framework */ = {isa = PBXFileReference; name = "SafariServices.framework"; path = "System/Library/Frameworks/SafariServices.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		6C9FE50F827B40F4867DEE46 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		35F06375667F4271B6E3AF78 /* AddressBook.framework */ = {isa = PBXFileReference; name = "AddressBook.framework"; path = "System/Library/Frameworks/AddressBook.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,11 +389,13 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				DEE8A77CBDC94E03BD36BE8A /* libRNVectorIcons.a in Frameworks */,
-
 				DA5CD6BADD434AB5A0E49FBC /* libRCTFBSDK.a in Frameworks */,
-
 				55B36017BA6548ACA6AB96CB /* libRCTCamera.a in Frameworks */,
-
+				BF026CE4512B4358815B0786 /* libRNGoogleSignin.a in Frameworks */,
+				1DBE13724E414DA58AD9E0CD /* libz.tbd in Frameworks */,
+				E2B16EEB1E62442BB5A64615 /* SafariServices.framework in Frameworks */,
+				FA4422017A0346DCA608C00C /* SystemConfiguration.framework in Frameworks */,
+				4274E99C68A64DABAF2129E4 /* AddressBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,11 +563,9 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				A1AD2F24281343D6BB3485B4 /* RNVectorIcons.xcodeproj */,
-
 				AE90F74AF7EA47729E000C36 /* RCTFBSDK.xcodeproj */,
-
 				3A8DD85B2D4849AE85E87775 /* RCTCamera.xcodeproj */,
-
+				6EB6A508C73A4680A7592169 /* RNGoogleSignin.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -578,6 +587,7 @@
 				00E356EF1AD99517003FC87E /* BotramTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				05FF0868D5574F39AEA959A2 /* Resources */,
+				0BC975F6284947039A6453B7 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -643,6 +653,18 @@
 				B4B1F122538B44E0B0079255 /* Zocial.ttf */,
 			);
 			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
+		0BC975F6284947039A6453B7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				239CF9005B9F4B97B195256D /* libz.tbd */,
+				F552FA73621445F78E19C7DC /* SafariServices.framework */,
+				6C9FE50F827B40F4867DEE46 /* SystemConfiguration.framework */,
+				35F06375667F4271B6E3AF78 /* AddressBook.framework */,
+			);
+			name = Frameworks;
 			path = "";
 			sourceTree = "<group>";
 		};
@@ -1182,16 +1204,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
-
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 			};
 			name = Debug;
@@ -1213,16 +1232,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
-
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 			};
 			name = Release;
@@ -1247,7 +1263,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
-
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 			};
 			name = Debug;
@@ -1269,11 +1285,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
-
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 			};
 			name = Release;
@@ -1304,16 +1318,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
-
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 			};
 			name = Debug;
@@ -1344,14 +1355,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
-
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 			};
 			name = Release;
@@ -1377,7 +1387,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1402,7 +1411,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
