@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import HomeScene from './components/MenuDrawer';
+import HomeScene from './components/Home';
 import FavoritesScene from './components/Favorites';
 import LoginScene from './components/LoginScene';
 import CameraScene from './components/Camera'
