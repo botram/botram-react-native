@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import HomeScene from './components/Home';
 import FavoritesScene from './components/Favorites';
 import LoginScene from './components/LoginScene';
-import CameraScene from './components/Camera'
-import PreCameraScene from './components/PreCamera'
+import CameraScene from './components/Camera';
+import PreCameraScene from './components/PreCamera';
+import UserProfileScene from './components/UserProfile'
 
 import {
   AppRegistry,
@@ -34,6 +35,11 @@ export default class Botram extends Component {
       return (
         <PreCameraScene route={route} navigator={navigator} />
       )
+    }  
+    else if (route.index === 4) {
+      return (
+        <UserProfileScene route={route} navigator={navigator} />
+      )
     }
   }
 
@@ -42,7 +48,7 @@ export default class Botram extends Component {
     const appThis = this
     return (
       <Navigator
-        initialRoute={{index: 1 }}
+        initialRoute={{index: 4 }}
         renderScene={appThis.renderNewScene}
         configureScene={(route, routeStack) =>
           Navigator.SceneConfigs.FadeAndroid}
