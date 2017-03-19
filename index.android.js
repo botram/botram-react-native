@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import HomeScene from './components/Home';
 import FavoritesScene from './components/Favorites';
 import LoginScene from './components/LoginScene';
@@ -10,7 +11,6 @@ import FoodDetails from './components/FoodDetails';
 import MenuDrawer from './components/MenuDrawer';
 import SearchScene from './components/SearchScene';
 
-
 import {
   AppRegistry,
   Navigator,
@@ -20,6 +20,7 @@ import {
 export default class Botram extends Component {
 
   renderNewScene (route, navigator) {
+
     if (route.title === 'LoginScene') {
       return(
         <LoginScene route={route} navigator={navigator} />
