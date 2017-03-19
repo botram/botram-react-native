@@ -3,9 +3,11 @@ import React, { Component } from 'react';
 import HomeScene from './components/Home';
 import FavoritesScene from './components/Favorites';
 import LoginScene from './components/LoginScene';
+import PreCameraScene from './components/PreCamera';
+import UserProfileScene from './components/UserProfile'
 import CameraScene from './components/Camera'
-import PreCameraScene from './components/PreCamera'
 import FoodDetails from './components/FoodDetails'
+
 
 import {
   AppRegistry,
@@ -35,8 +37,13 @@ export default class Botram extends Component {
       return (
         <PreCameraScene route={route} navigator={navigator} />
       )
-    }
+    }  
     else if (route.index === 4) {
+      return (
+        <UserProfileScene route={route} navigator={navigator} />
+      )
+    }
+    else if (route.index === 5) {
       return (
         <FoodDetails route={route} navigator={navigator} />
       )
