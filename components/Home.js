@@ -40,7 +40,7 @@ export default class Home extends Component {
         <Footer >
           <FooterTab style={{backgroundColor:'#ECECEC',}}>
             <Button onPress={() => {
-              this.props.navigator.push({index:1})
+              this.props.navigator.push({index:2})
             }}>
               {iconfav}
             </Button>
