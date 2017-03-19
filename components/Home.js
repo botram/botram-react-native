@@ -81,7 +81,7 @@ export default class Home extends Component {
               </Row>
               <Container>
                 <View style={styles.container}>
-                  <FoodItemCard />
+                  <FoodItemCard navigator={this.props.navigator}/>
                 </View>
 
                 <Footer >
