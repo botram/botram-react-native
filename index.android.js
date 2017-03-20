@@ -12,8 +12,6 @@ import YourFoodScene from './components/YourFood'
 import SearchScene from './components/SearchScene';
 import NotificationScene from './components/Notification'
 
-
-
 import {
   AppRegistry,
   Navigator,
@@ -73,7 +71,7 @@ export default class Botram extends Component {
     const appThis = this
     return (
       <Navigator
-        initialRoute={{title: 'NotificationScene' }}
+        initialRoute={{title: 'HomeScene' }}
         renderScene={appThis.renderNewScene}
         configureScene={(route, routeStack) =>
           Navigator.SceneConfigs.FadeAndroid}
