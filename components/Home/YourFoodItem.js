@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView,  } from 'react-native';
+import { View, Text, Image, ScrollView, Alert, } from 'react-native';
 import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Button, Right } from 'native-base'
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -11,6 +11,31 @@ import food4 from '../../dummyFiles/food4.jpg'
 var {width, height} = require('Dimensions').get('window');
 
 export default class FoodItemCard extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      showhide  : 'Hide',
+      activePicture : 1,
+      status : 'Available',
+    }
+  }
+  handleStatus(){
+    if (this.state.showhide==='Hide') {
+      this.setState({
+        showhide : 'Show',
+        activePicture : 0.3,
+        status : 'Not Available',
+      })
+    }
+    else {
+      this.setState({
+        showhide : 'Hide',
+        activePicture :1,
+        status : 'Available',
+      })
+    }
+
+  }
   render(){
     return(
       <Container>
@@ -18,7 +43,7 @@ export default class FoodItemCard extends Component {
           <Content>
             <Card>
               <CardItem cardBody>
-                <Image style={{ resizeMode: 'cover', width: width, height: height/3 }} source={food1}/>
+                <Image style={{ opacity:this.state.activePicture, backgroundColor: '#000000', resizeMode: 'cover', width: width, height: height/3 }} source={food1}/>
               </CardItem>
               <CardItem>
                 <Grid>
@@ -29,8 +54,38 @@ export default class FoodItemCard extends Component {
                   <Row>
                   <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Stok : 7 Porsi</Text></Col>
                   <Col size={23}>
-                    <Button style={{justifyContent:'center',width: width/5, height: height/25, backgroundColor: '#00B16A'}}>
-                      <Text style={{color: '#FFFFFF'}}>Edit</Text>
+                    <Button
+                      onPress={() => Alert.alert(
+                        'Confirmation',
+                        'Are you sure to delete this item?',
+                        [
+                          {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+                          {text: 'OK', onPress: () => console.log('OK Pressed!')},
+                        ]
+                      )}
+                      style={{justifyContent:'center',width: width/5, height: height/25, backgroundColor: '#D50000'}}>
+                      <Text style={{color: '#FFFFFF'}}>Delete</Text>
+                    </Button>
+                   </Col>
+                  </Row>
+                  <Row style={{marginTop:5}}>
+                  <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Status : {this.state.status}</Text></Col>
+                  <Col size={23}>
+                    <Button
+                      onPress={() =>
+                        {
+                          Alert.alert(
+                            'Confirmation',
+                            'Do you want to re-sell this item?',
+                            [
+                              {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+                              {text: 'OK', onPress: () => this.handleStatus()},
+                            ]
+                          )
+                        }
+                      }
+                      style={{justifyContent:'center',width: width/5, height: height/25, backgroundColor: '#00B16A'}}>
+                      <Text style={{color: '#FFFFFF'}}>{this.state.showhide}</Text>
                     </Button>
                    </Col>
                   </Row>
