@@ -18,7 +18,7 @@ import foods from './../dummyFiles/pecel.jpg'
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
-export default class FoodDetails extends Component {
+export default class PostingFood extends Component {
     render() {
       return (
         <View>

@@ -8,8 +8,9 @@ import UserProfileScene from './components/UserProfile'
 import CameraScene from './components/Camera'
 import FoodDetails from './components/FoodDetails'
 import MenuDrawer from './components/MenuDrawer'
-import YourFoodScene from './components/YourFood'
+import PostingFoodScene from './components/PostingFood'
 import SearchScene from './components/SearchScene';
+import YourFoodsScene from './components/YourFoods';
 
 
 
@@ -52,15 +53,21 @@ export default class Botram extends Component {
         <UserProfileScene route={route} navigator={navigator} />
       )
     }
-    else if (route.title === 'YourFoodScene') {
+    else if (route.title === 'PostingFoodScene') {
       return (
-        <YourFoodScene route={route} navigator={navigator} />
+        <PostingFoodScene route={route} navigator={navigator} />
       )
     }
-    else if (route.title === "SearchScene")
+    else if (route.title === "SearchScene") {
       return (
         <SearchScene route={route} navigator={navigator} />
       )
+    }
+    else if (route.title === "YourFoodsScene") {
+      return (
+        <YourFoodsScene route={route} navigator={navigator} />
+      )
+    }
   }
 
 
@@ -68,7 +75,7 @@ export default class Botram extends Component {
     const appThis = this
     return (
       <Navigator
-        initialRoute={{title: 'HomeScene' }}
+        initialRoute={{title: 'YourFoodsScene' }}
         renderScene={appThis.renderNewScene}
         configureScene={(route, routeStack) =>
           Navigator.SceneConfigs.FadeAndroid}
