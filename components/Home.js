@@ -52,6 +52,7 @@ export default class Home extends Component {
       const appthis = this;
       BackAndroid.addEventListener('hardwareBackPress', () => {
         if (appthis.state.klik===2) {
+          BackAndroid.exitApp()
           return false
         }
         else if (appthis.state.klik===1) {
