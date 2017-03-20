@@ -8,7 +8,7 @@ export default class Botram extends Component {
   //   this.props.navigator.push({index:1})
   // }
 
-  goToHomeScene = () => this.props.navigator.resetTo({index:1})
+  goToHomeScene = () => this.props.navigator.resetTo({title:'HomeScene'})
 
   render(){
     return(

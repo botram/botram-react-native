@@ -67,7 +67,8 @@ export default class Botram extends Component {
       return (
         <SearchScene route={route} navigator={navigator} />
       )
-    else if (route.title === "NotificationScene")
+    }
+    else if (route.title === "NotificationScene") {
       return (
           <NotificationScene route={route} navigator={navigator} />
       )
