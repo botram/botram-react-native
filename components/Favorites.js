@@ -24,10 +24,10 @@ var {width, height} = require('Dimensions').get('window');
 export default class Favorites extends Component {
   render() {
     const appthis = this;
-    BackAndroid.addEventListener('hardwareBackPress', function() {
-      appthis.props.navigator.popToTop()
-      return true;
-    })
+    // BackAndroid.addEventListener('hardwareBackPress', function() {
+    //   appthis.props.navigator.popToTop()
+    //   return true;
+    // })
     return (
       <Container>
         <View style={styles.container}>

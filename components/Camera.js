@@ -12,11 +12,11 @@ var {width, height} = require('Dimensions').get('window');
 
 export default class Cam extends Component {
   render() {
-    const appthis = this;
-    BackAndroid.addEventListener('hardwareBackPress', function() {
-      appthis.props.navigator.popToTop()
-      return true;
-    })
+    // const appthis = this;
+    // BackAndroid.addEventListener('hardwareBackPress', function() {
+    //   appthis.props.navigator.popToTop()
+    //   return true;
+    // })
     return (
       <View style={{width:'100%', height:'100%'}}>
         <Camera
