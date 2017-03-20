@@ -41,10 +41,7 @@ export default class Home extends Component {
   openDrawer = () => {
     this._drawer._root.open()
   }
-  handleToast(){
-    ToastAndroid.showWithGravity('Press again to exit application.',
-    ToastAndroid.SHORT,
-    ToastAndroid.CENTER,)
+  handleExitBack(){
     this.setState({
       klik : 2,
     });
@@ -59,7 +56,7 @@ export default class Home extends Component {
         }
         else if (appthis.state.klik===1) {
           appthis.props.navigator.popToTop()
-          appthis.handleToast()
+          appthis.handleExitBack()
           return true;
         }
       })
