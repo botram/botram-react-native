@@ -40,7 +40,12 @@ export default class Botram extends Component {
     }
     else if (route.title === 'PreCameraScene') {
       return (
-        <PreCameraScene route={route} navigator={navigator} />
+        <PreCameraScene route={route} navigator={navigator}/>
+      )
+    }
+    else if (route.title === 'CameraScene'){
+      return(
+        <CameraScene route={route} navigator={navigator} />
       )
     }
     else if (route.title === 'FoodDetails') {
@@ -55,7 +60,7 @@ export default class Botram extends Component {
     }
     else if (route.title === 'PostingFoodScene') {
       return (
-        <PostingFoodScene route={route} navigator={navigator} />
+        <PostingFoodScene route={route} navigator={navigator} pathUri={route.uri} />
       )
     }
     else if (route.title === "SearchScene") {
