@@ -73,7 +73,7 @@ export default class Botram extends Component {
 
   render() {
     const appThis = this;
-    
+
     return (
       <Navigator
         initialRoute={{title: 'HomeScene' }}
