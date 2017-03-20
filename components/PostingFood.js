@@ -18,7 +18,12 @@ import foods from './../dummyFiles/pecel.jpg'
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
-export default class FoodDetails extends Component {
+export default class PostingFood extends Component {
+  constructor(props){
+    super(props)
+
+  }
+  
     render() {
       return (
         <View>
@@ -34,7 +39,7 @@ export default class FoodDetails extends Component {
           </Row>
           <ScrollView>
           <View style={styles.container}>
-              <Image style={{ resizeMode: 'cover', width: width, height: height/3 }} source={foods}/>
+              <Image style={{ resizeMode: 'cover', width: width, height: height/3 }}source={{uri: this.props.pathUri}}/>
               <View style={{marginTop:10,marginBottom:10,}}>
                 <TextInput placeholder='Title' style={styles.txtMenu}/>
                 <TextInput placeholder='Price' maxLength = {3} keyboardType='numeric' style={styles.txtMenu}/>

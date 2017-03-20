@@ -18,11 +18,6 @@ var {width, height} = require('Dimensions').get('window');
 
 export default class Search extends Component {
   render() {
-    const appthis = this;
-    BackAndroid.addEventListener('hardwareBackPress', function() {
-      appthis.props.navigator.popToTop()
-      return true;
-    })
     return (
       <Container>
         <Header searchBar rounded style={{backgroundColor: '#B71C1C'}}>

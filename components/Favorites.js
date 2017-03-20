@@ -19,21 +19,17 @@ const iconcamera = (<Icon name="photo-camera" size={30} color="#6C7A89" />)
 const iconfav = (<Icon name="favorite" size={30} color="#b71c1c" />)
 const iconSearch = (<Icon name="search" size={30}color="#6C7A89" />)
 
+import FoodFavoriteItem from './Home/FoodFavoriteItem'
+
 var {width, height} = require('Dimensions').get('window');
 
 export default class Favorites extends Component {
   render() {
     const appthis = this;
-    BackAndroid.addEventListener('hardwareBackPress', function() {
-      appthis.props.navigator.popToTop()
-      return true;
-    })
     return (
       <Container>
         <View style={styles.container}>
-          <Text style={styles.judul}>
-            All Favorite Foods
-          </Text>
+          <FoodFavoriteItem/>
         </View>
 
         <Footer >

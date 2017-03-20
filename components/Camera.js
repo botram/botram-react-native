@@ -3,7 +3,10 @@ import {
   View,
   BackAndroid,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  Image,
+  Text,
+  TouchableOpacity
 } from 'react-native';
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -11,32 +14,47 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 var {width, height} = require('Dimensions').get('window');
 
 export default class Cam extends Component {
-  render() {
-    const appthis = this;
-    BackAndroid.addEventListener('hardwareBackPress', function() {
-      appthis.props.navigator.popToTop()
-      return true;
-    })
-    return (
-      <View style={{width:'100%', height:'100%'}}>
-        <Camera
-          ref={(cam) => {
-            this.camera = cam;
-          }}
-          style={styles.preview}
-          aspect={Camera.constants.Aspect.fill}>
-          <Icon name='circle-thin' style={{color:'white', fontSize:85, marginBottom: 25}} onPress={this.takePicture.bind(this)}/>
-        </Camera>
-      </View>
-    );
+  constructor(props){
+    super(props)
+    this.state = {
+      path: null
+    }
   }
 
   takePicture() {
     this.camera.capture()
-      .then((data) => console.log(data))
-      .then(()=>this.props.navigator.push({index: 0}))
-      .catch(err => console.error(err));
+    .then((data) => {
+        this.setState({path: data.path})
+        console.log(this.state.path);
+        // console.log(data)
+      })
+    .then(()=>this.props.navigator.push({title: 'PostingFoodScene', uri: this.state.path}))
+    .catch(err => console.error(err));
   }
+
+  renderCamera(){
+    return(
+      <Camera
+        ref={(cam) => {
+          this.camera = cam;
+        }}
+        style={styles.preview}
+        aspect={Camera.constants.Aspect.fill}
+        captureTarget={Camera.constants.CaptureTarget.disk}
+        >
+        <Icon name='circle-thin' style={{color:'white', fontSize:85, marginBottom: 25}} onPress={this.takePicture.bind(this)}/>
+      </Camera>
+    )
+  }
+
+  render() {
+    return (
+      <View style={{width:'100%', height:'100%'}}>
+         {this.renderCamera()}
+      </View>
+    );
+  }
+
 }
 
 const styles = StyleSheet.create({
