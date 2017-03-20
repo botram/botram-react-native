@@ -76,7 +76,7 @@ export default class Botram extends Component {
 
     return (
       <Navigator
-        initialRoute={{title: 'YourFoodsScene' }}
+        initialRoute={{title: 'HomeScene' }}
         renderScene={appThis.renderNewScene}
         configureScene={(route, routeStack) =>
           Navigator.SceneConfigs.FadeAndroid}
