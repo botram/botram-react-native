@@ -35,7 +35,13 @@ export default class MenuDrawer extends Component {
         <View style={styles.listmenu}>
           <Row style={{height: 45,justifyContent: 'center',paddingTop:10,}}>
             <Col size={20}><Text style={styles.menuicon}>{iconnotif}</Text></Col>
-            <Col size={80}><Text style={styles.txtmenu}>Notifications</Text></Col>
+            <Col size={80}>
+              <TouchableOpacity onPress={() => {
+                this.props.nav.push({title:'NotificationScene'})
+              }}>
+              <Text style={styles.txtmenu}>Notifications</Text>
+              </TouchableOpacity>
+            </Col>
           </Row>
           <Row style={{height: 45,justifyContent: 'center',paddingTop:10,}}>
             <Col size={20}><Text style={styles.menuicon}>{iconperson}</Text></Col>
