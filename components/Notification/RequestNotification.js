@@ -26,12 +26,7 @@ export default class Request extends Component {
                 </Text>
               </Row>
               <Row>
-                <Col size={80}>
-                  <Row>
-                    <Text>
-                      Buyer : Bu Juju
-                    </Text>
-                  </Row>
+                <Col size={75}>
                   <Row>
                         <Text>
                           Qty : 2
@@ -43,10 +38,36 @@ export default class Request extends Component {
                     </Text>
                   </Row>
                 </Col>
-                <Col size={20} style={{justifyContent:'center'}}>
-                  <Button style={{backgroundColor: '#00B16A', height:height/20, width:width/6, justifyContent:'center'}}>
-                    <Icon name='check' style={{color: '#FFFFFF', fontSize: height/25}}/>
-                  </Button>
+                <Col size={25} style={{justifyContent:'center'}}>
+                  <Text style={{color:'#00B16A'}}>ACCEPTED</Text>
+                </Col>
+              </Row>
+            </Col>
+            </CardItem>
+          </Card>
+          <Card>
+            <CardItem>
+            <Col>
+              <Row>
+                <Text style={{color:'#282828', fontSize: height/35, fontWeight: 'bold'}}>
+                  NASI BAKAR
+                </Text>
+              </Row>
+              <Row>
+                <Col size={75}>
+                  <Row>
+                        <Text>
+                          Qty : 1
+                        </Text>
+                  </Row>
+                  <Row>
+                    <Text>
+                      Total : Rp 40.000
+                    </Text>
+                  </Row>
+                </Col>
+                <Col size={25} style={{justifyContent:'center'}}>
+                  <Text style={{color:'#b71c1c'}}>DECLINED</Text>
                 </Col>
               </Row>
             </Col>
