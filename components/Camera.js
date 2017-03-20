@@ -47,19 +47,9 @@ export default class Cam extends Component {
     )
   }
 
-  renderImage(){
-    return(
-      <View>
-        <Image source={{ uri: this.state.path}} style={{flex:1, justifyContent: 'flex-end', alignItems:'center', height: height, width: width}}/>
-        <TouchableOpacity onPress={() => this.setState({path:null})}><Text>retake</Text></TouchableOpacity>
-      </View>
-    )
-  }
-
   render() {
     return (
       <View style={{width:'100%', height:'100%'}}>
-        {/* {this.state.path ? this.renderImage() : this.renderCamera()} */}
          {this.renderCamera()}
       </View>
     );
