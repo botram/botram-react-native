@@ -4,11 +4,10 @@ import { View, AsyncStorage } from 'react-native';
 
 export default class Botram extends Component {
 
-  // componentWillMount(){
-  //   this.props.navigator.push({index:1})
-  // }
-
-  goToHomeScene = () => this.props.navigator.resetTo({title:'HomeScene'})
+  goToHomeScene = () => {
+    console.log('masuk reset to');
+    this.props.navigator.resetTo({title:'HomeScene'});
+  }
 
   postUserData = () => {
     }
@@ -29,13 +28,13 @@ export default class Botram extends Component {
             (data) => {
               this.goToHomeScene()
               let accessToken = data.accessToken
-              // alert(accessToken.toString())
 
               const responseInfoCallback = (error, result) => {
                 if (error) {
                   console.log(error)
                   alert('Error fetching data: ' + error.toString());
                 } else {
+                  const self = this;
                   fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users', {
                     method: 'POST',
                     headers: {
@@ -56,10 +55,9 @@ export default class Botram extends Component {
                     AsyncStorage.setItem("token", data)
 
                     AsyncStorage.getItem("token").then(value => console.log(value));
+                    self.goToHomeScene()
                   })
                   .catch(err => console.log(err))
-
-                  this.goToHomeScene()
                 }
               }
 
@@ -76,7 +74,6 @@ export default class Botram extends Component {
                 responseInfoCallback
               );
 
-              // Start the graph request.
               new GraphRequestManager().addRequest(infoRequest).start()
             }
           )

@@ -17,6 +17,7 @@ import {
   ToastAndroid,
   BackAndroid,
   TouchableOpacity,
+  AsyncStorage,
 } from 'react-native'
 var {width, height} = require('Dimensions').get('window');
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -37,10 +38,24 @@ export default class Home extends Component {
     }
   }
 
-  componentDidMount(){
+
+  componentDidMount() {
+    const token = AsyncStorage.getItem("token").then(token => {
+      if(!token) {
+        this.props.navigator.popToTop();
+      }
+    });
     fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food`)
     .then(res => res.json())
     .then(data => this.setState ({foodList: data.success }))
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const token = AsyncStorage.getItem("token").then(token => {
+      if(!token) {
+        nextProps.navigator.popToTop();
+      }
+    });
   }
 
   closeDrawer = () => {
@@ -69,7 +84,7 @@ export default class Home extends Component {
           return true;
         }
       })
-
+        AsyncStorage.getItem('token').then(data => console.log(data))
         return (
             <Drawer
               ref={(ref) => { this._drawer = ref; }}

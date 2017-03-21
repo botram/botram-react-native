@@ -81,31 +81,16 @@ export default class Botram extends Component {
     }
   }
 
-
   render() {
     const appThis = this;
-    const token = AsyncStorage.getItem("token")
-    if (token) {
-      return (
-        <Navigator
-          initialRoute={{title: 'HomeScene' }}
-          renderScene={appThis.renderNewScene}
-          configureScene={(route, routeStack) =>
-            Navigator.SceneConfigs.FadeAndroid}
-        />
-      )
-    }
-    else {
-      return (
-        <Navigator
-          initialRoute={{title: 'LoginScene' }}
-          renderScene={appThis.renderNewScene}
-          configureScene={(route, routeStack) =>
-            Navigator.SceneConfigs.FadeAndroid}
-        />
-      )
-    }
-
+    return (
+      <Navigator
+        initialRoute={{title: 'LoginScene' }}
+        renderScene={appThis.renderNewScene}
+        configureScene={(route, routeStack) =>
+          Navigator.SceneConfigs.FadeAndroid}
+      />
+    );
   }
 }
 
