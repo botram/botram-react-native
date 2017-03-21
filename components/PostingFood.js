@@ -54,11 +54,12 @@ export default class PostingFood extends Component {
           throw new Error('Failed to upload image to S3', response);
         }
         console.log('*** BODY ***', response.body);
-      }).catch(err => console.error(err));
+      })
+        .catch(err => console.error(err));
     }
 
     postFood() {
-      AsyncStorage.getItem('userId', data => this.setState({userId: data}))
+      AsyncStorage.getItem('userId').then(data => this.setState({userId: data}))
       fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food', {
         method: 'POST',
         headers: {

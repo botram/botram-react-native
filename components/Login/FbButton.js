@@ -49,11 +49,12 @@ export default class Botram extends Component {
                     })
                   }).then((response) => {
                     return response.json()
+
+
                   }).then(data => {
-                    AsyncStorage.setItem("token", data)
-                    // AsyncStorage.setItem('userId', data.user_id)
-                    AsyncStorage.getItem('token').then(data => console.log(data))
-                    // AsyncStorage.getItem('userId').then(data => console.log(data))
+                    AsyncStorage.setItem("token", data.token)
+                    AsyncStorage.setItem("userId", data.userId)
+                    console.log(data);
                     self.goToHomeScene()
                   })
                   .catch(err => console.log(err))
