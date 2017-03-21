@@ -16,6 +16,7 @@ import {
 var {width, height} = require('Dimensions').get('window');
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import foods from './../dummyFiles/pecel.jpg'
+import { RNS3 } from 'react-native-aws3';
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
@@ -23,16 +24,23 @@ export default class PostingFood extends Component {
   constructor(props){
     super(props)
     this.state={
-      myKey:'',
+      'title':'',
+      'price':'',
+      'quantity':'',
+      'tags':'',
+      'description':'',
+      'pic': '',
+      'userId': ''
     }
   }
 
     upload() {
       const file = {
         uri: this.props.pathUri,
-        name: 'botram' + new Date() + '.jpg',
+        name: 'food' + Date.now() + '.jpg',
         type: 'image/jpeg'
       };
+      this.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram/foods/food' + Date.now() + '.jpg'})
       const options = {
         keyPrefix: 'foods/',
         bucket: 'botram',
@@ -49,6 +57,25 @@ export default class PostingFood extends Component {
       });
 
         .catch(err => console.error(err));
+    }
+
+    postFood() {
+      AsyncStorage.getItem('id', data => this.setState({userId: data}))
+      fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          food_title: this.state.title,
+          food_pic: this.state.pic,
+          food_price: this.state.price,
+          food_qty: this.state.quantity,
+          food_desc: this.state.description,
+          food_tags: this.state.tags,`  `
+          _userId: this.state.userId
+        })
     }
   // componentDidMount() {
     // AsyncStorage.getItem("myKey").then((value) => {
@@ -81,15 +108,23 @@ export default class PostingFood extends Component {
               <Image style={{ resizeMode: 'cover', width: width, height: height/3 }}source={{uri: this.props.pathUri}}/>
               <View style={{marginTop:10,marginBottom:10,}}>
                 <TextInput
-                  onChangeText={(text) => this.saveData(text)}
+                  onChangeText={(text) => this.setState({title:text})}
                   placeholder='Title' style={styles.txtMenu}/>
-                <TextInput placeholder='Price' maxLength = {3} keyboardType='numeric' style={styles.txtMenu}/>
-                <TextInput placeholder='Quantity' maxLength = {3} keyboardType='numeric' style={styles.txtMenu}/>
-                <TextInput placeholder='Tags (separate by space)' style={styles.txtMenu}/>
-                <TextInput placeholder='Description' multiline numberOfLines = {4} style={styles.txtDescription}/>
+                <TextInput
+                  onChangeText={(text) => this.setState({price:text})}
+                  placeholder='Price' maxLength = {3} keyboardType='numeric' style={styles.txtMenu}/>
+                <TextInput
+                  onChangeText={(text) => this.setState({quantity:text})}
+                  placeholder='Quantity' maxLength = {3} keyboardType='numeric' style={styles.txtMenu}/>
+                <TextInput
+                  onChangeText={(text) => this.setState({tags:text})}
+                  placeholder='Tags (separate by space)' style={styles.txtMenu}/>
+                <TextInput
+                  onChangeText={(text) => this.setState({description:text})}
+                  placeholder='Description' multiline numberOfLines = {4} style={styles.txtDescription}/>
               </View>
               <View style={{alignItems:'center'}}>
-                <Button onPress={this.upload()} style={{borderRadius:5, alignItems:'center',justifyContent:'center',width: width/4, height: height/20, backgroundColor: '#00B16A'}}>
+                <Button onPress={this.upload().then(this.post)} style={{borderRadius:5, alignItems:'center',justifyContent:'center',width: width/4, height: height/20, backgroundColor: '#00B16A'}}>
                   <Text style={{color:'#FFFFFF'}}>Submit</Text>
                 </Button>
               </View>
