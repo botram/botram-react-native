@@ -25,9 +25,31 @@ export default class PostingFood extends Component {
     this.state={
       myKey:'',
     }
-
-
   }
+
+    upload() {
+      const file = {
+        uri: this.props.pathUri,
+        name: 'botram' + new Date() + '.jpg',
+        type: 'image/jpeg'
+      };
+      const options = {
+        keyPrefix: 'foods/',
+        bucket: 'botram',
+        region: 'ap-southeast-1',
+        accessKey: 'AKIAJYWMHRSF565RIIYQ',
+        secretKey: '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',
+        successActionStatus: 201
+      };
+      RNS3.put(file, options).then(response => {
+        if (response.status !== 201) {
+          throw new Error('Failed to upload image to S3', response);
+        }
+        console.log('*** BODY ***', response.body);
+      });
+
+        .catch(err => console.error(err));
+    }
   // componentDidMount() {
     // AsyncStorage.getItem("myKey").then((value) => {
     //   this.setState({"myKey": value});
@@ -67,7 +89,7 @@ export default class PostingFood extends Component {
                 <TextInput placeholder='Description' multiline numberOfLines = {4} style={styles.txtDescription}/>
               </View>
               <View style={{alignItems:'center'}}>
-                <Button style={{borderRadius:5, alignItems:'center',justifyContent:'center',width: width/4, height: height/20, backgroundColor: '#00B16A'}}>
+                <Button onPress={this.upload()} style={{borderRadius:5, alignItems:'center',justifyContent:'center',width: width/4, height: height/20, backgroundColor: '#00B16A'}}>
                   <Text style={{color:'#FFFFFF'}}>Submit</Text>
                 </Button>
               </View>
