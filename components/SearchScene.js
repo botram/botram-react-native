@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import FoodItemCard from './Home/FoodItemCard'
 
 const iconhome = (<Icon name="home" size={30} color="#6C7A89" />)
 const iconcamera = (<Icon name="photo-camera" size={30} color="#6C7A89" />)
@@ -33,7 +32,7 @@ export default class Search extends Component {
         </Header>
 
         <Content>
-          <FoodItemCard/>
+
         </Content>
 
         <Footer style={{position: 'absolute', bottom:0, left: 0, right: 0}}>
