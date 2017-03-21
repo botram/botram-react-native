@@ -14,8 +14,6 @@ import Carousel from 'react-native-looped-carousel';
 
 const { width, height } = Dimensions.get('window');
 
-
-
 export default class CarouselExample extends Component {
 
  constructor(props) {
@@ -28,7 +26,6 @@ export default class CarouselExample extends Component {
 
   componentDidMount() {
     const token = AsyncStorage.getItem("token").then(token => {
-      console.log(token);
       if(token) {
         this.props.navigator.resetTo({title:'HomeScene'});
       }

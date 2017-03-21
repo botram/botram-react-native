@@ -40,7 +40,7 @@ export default class Home extends Component {
   componentDidMount() {
     const token = AsyncStorage.getItem("token").then(token => {
       if(!token) {
-        this.props.navigator.popToTop();
+        this.props.navigator.resetTo({title:'LoginScene'});
       }
     });
   }
@@ -48,7 +48,7 @@ export default class Home extends Component {
   componentWillReceiveProps(nextProps) {
     const token = AsyncStorage.getItem("token").then(token => {
       if(!token) {
-        nextProps.navigator.popToTop();
+        nextProps.navigator.resetTo({title:'LoginScene'});
       }
     });
   }
