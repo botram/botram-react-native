@@ -3,7 +3,8 @@ import {
   Text,
   View,
   Dimensions,
-  Image
+  Image,
+  AsyncStorage
 } from 'react-native';
 import {
   H1,
@@ -23,6 +24,23 @@ export default class CarouselExample extends Component {
    this.state = {
       size: { width, height },
     };
+  }
+
+  componentDidMount() {
+    const token = AsyncStorage.getItem("token").then(token => {
+      console.log(token);
+      if(token) {
+        this.props.navigator.resetTo({title:'HomeScene'});
+      }
+    });
+  }
+
+  componentWillReceiveProps() {
+    const token = AsyncStorage.getItem("token").then(token => {
+      if(token) {
+        this.props.navigator.resetTo({title:'HomeScene'});
+      }
+    });
   }
 
  _onLayoutDidChange = (e) => {

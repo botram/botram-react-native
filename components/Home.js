@@ -17,6 +17,7 @@ import {
   ToastAndroid,
   BackAndroid,
   TouchableOpacity,
+  AsyncStorage,
 } from 'react-native'
 var {width, height} = require('Dimensions').get('window');
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -35,6 +36,23 @@ export default class Home extends Component {
       klik  : 1,
     }
   }
+
+  componentDidMount() {
+    const token = AsyncStorage.getItem("token").then(token => {
+      if(!token) {
+        this.props.navigator.popToTop();
+      }
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const token = AsyncStorage.getItem("token").then(token => {
+      if(!token) {
+        nextProps.navigator.popToTop();
+      }
+    });
+  }
+
   closeDrawer = () => {
     this._drawer._root.close()
   }
@@ -61,7 +79,7 @@ export default class Home extends Component {
           return true;
         }
       })
-
+        AsyncStorage.getItem('token').then(data => console.log(data))
         return (
             <Drawer
               ref={(ref) => { this._drawer = ref; }}

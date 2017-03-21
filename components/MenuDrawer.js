@@ -18,6 +18,7 @@ import {
   Image,
   View,
   TouchableOpacity,
+  AsyncStorage,
 } from 'react-native';
 import thumb from '../dummyFiles/thumb.jpg'
 var {width, height} = require('Dimensions').get('window');
@@ -66,7 +67,15 @@ export default class MenuDrawer extends Component {
           </Row>
           <Row style={{height: 45,justifyContent: 'center',paddingTop:10,}}>
             <Col size={20}><Text style={styles.menuicon}>{iconlogout}</Text></Col>
-            <Col size={80}><Text style={styles.txtmenu}>Logout</Text></Col>
+            <Col size={80}>
+              <TouchableOpacity onPress = {() => {
+                AsyncStorage.removeItem("token")
+                this.props.nav.resetTo({title:'LoginScene'})
+                AsyncStorage.getItem('token').then(data => console.log(data))
+              }}>
+                <Text style={styles.txtmenu}>Logout</Text>
+              </TouchableOpacity>
+            </Col>
           </Row>
         </View>
       </View>
