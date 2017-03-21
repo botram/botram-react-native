@@ -11,6 +11,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  AsyncStorage,
 } from 'react-native'
 var {width, height} = require('Dimensions').get('window');
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -21,9 +22,25 @@ const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 export default class PostingFood extends Component {
   constructor(props){
     super(props)
+    this.state={
+      myKey:'',
+    }
+
 
   }
-  
+  // componentDidMount() {
+    // AsyncStorage.getItem("myKey").then((value) => {
+    //   this.setState({"myKey": value});
+    // }).done();
+  // }
+  //
+  // saveData(value) {
+  //   AsyncStorage.setItem("myKey", value);
+  //   this.setState({"myKey": value});
+  //   console.log(AsyncStorage);
+  //   console.log(this.state.myKey);
+  // }
+
     render() {
       return (
         <View>
@@ -41,7 +58,9 @@ export default class PostingFood extends Component {
           <View style={styles.container}>
               <Image style={{ resizeMode: 'cover', width: width, height: height/3 }}source={{uri: this.props.pathUri}}/>
               <View style={{marginTop:10,marginBottom:10,}}>
-                <TextInput placeholder='Title' style={styles.txtMenu}/>
+                <TextInput
+                  onChangeText={(text) => this.saveData(text)}
+                  placeholder='Title' style={styles.txtMenu}/>
                 <TextInput placeholder='Price' maxLength = {3} keyboardType='numeric' style={styles.txtMenu}/>
                 <TextInput placeholder='Quantity' maxLength = {3} keyboardType='numeric' style={styles.txtMenu}/>
                 <TextInput placeholder='Tags (separate by space)' style={styles.txtMenu}/>
@@ -56,6 +75,7 @@ export default class PostingFood extends Component {
             </ScrollView>
         </View>
       );
+      // console.log('');
     }
 }
 

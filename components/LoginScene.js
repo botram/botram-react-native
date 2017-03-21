@@ -13,6 +13,8 @@ import Carousel from 'react-native-looped-carousel';
 
 const { width, height } = Dimensions.get('window');
 
+
+
 export default class CarouselExample extends Component {
 
  constructor(props) {
