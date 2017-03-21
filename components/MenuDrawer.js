@@ -24,6 +24,26 @@ import thumb from '../dummyFiles/thumb.jpg'
 var {width, height} = require('Dimensions').get('window');
 
 export default class MenuDrawer extends Component {
+
+  componentDidMount() {
+    const token = AsyncStorage.getItem("token").then(token => {
+      if(!token) {
+        this.props.navigator.popToTop();
+      }
+    });
+    AsyncStorage.getItem("token").then(value => {
+    fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/`,  {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Token' : value
+      }
+    })
+    .then(res => res.json())
+    .then(data => this.setState ({foodList: data.success }))
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>

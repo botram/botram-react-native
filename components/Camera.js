@@ -25,8 +25,6 @@ export default class Cam extends Component {
     this.camera.capture()
     .then((data) => {
         this.setState({path: data.path})
-        console.log(this.state.path);
-        // console.log(data)
       })
     .then(()=>this.props.navigator.push({title: 'PostingFoodScene', uri: this.state.path}))
     .catch(err => console.error(err));

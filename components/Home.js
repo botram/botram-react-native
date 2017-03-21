@@ -45,9 +45,17 @@ export default class Home extends Component {
         this.props.navigator.popToTop();
       }
     });
-    fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food`)
+    AsyncStorage.getItem("token").then(value => {
+    fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food`,  {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Token' : value  
+      }
+    })
     .then(res => res.json())
     .then(data => this.setState ({foodList: data.success }))
+    })
   }
 
   componentWillReceiveProps(nextProps) {
