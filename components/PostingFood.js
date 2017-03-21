@@ -54,13 +54,13 @@ export default class PostingFood extends Component {
           throw new Error('Failed to upload image to S3', response);
         }
         console.log('*** BODY ***', response.body);
-      });
+      })
 
         .catch(err => console.error(err));
     }
 
     postFood() {
-      AsyncStorage.getItem('id', data => this.setState({userId: data}))
+      AsyncStorage.getItem('userId').then(data => this.setState({userId: data}))
       fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food', {
         method: 'POST',
         headers: {
@@ -73,7 +73,7 @@ export default class PostingFood extends Component {
           food_price: this.state.price,
           food_qty: this.state.quantity,
           food_desc: this.state.description,
-          food_tags: this.state.tags,`  `
+          food_tags: this.state.tags,
           _userId: this.state.userId
         })
     }
