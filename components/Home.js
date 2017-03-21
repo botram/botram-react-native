@@ -33,8 +33,16 @@ export default class Home extends Component {
     super()
     this.state = {
       klik  : 1,
+      foodList: []
     }
   }
+
+  componentDidMount(){
+    fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food`)
+    .then(res => res.json())
+    .then(data => this.setState ({foodList: data.success }))
+  }
+
   closeDrawer = () => {
     this._drawer._root.close()
   }
@@ -80,7 +88,7 @@ export default class Home extends Component {
               </Row>
               <Container>
                 <View style={styles.container}>
-                  <FoodItemCard navigator={this.props.navigator}/>
+                  <FoodItemCard navigator={this.props.navigator} data={this.state.foodList}/>
                 </View>
 
                 <Footer >
