@@ -34,7 +34,7 @@ export default class PostingFood extends Component {
     }
   }
 
-    upload() {
+    upload(cb, cb2) {
       const file = {
         uri: this.props.pathUri,
         name: 'food' + Date.now() + '.jpg',
@@ -53,12 +53,15 @@ export default class PostingFood extends Component {
         if (response.status !== 201) {
           throw new Error('Failed to upload image to S3', response);
         }
+        cb(cb2);
         console.log('*** BODY ***', response.body);
       })
         .catch(err => console.error(err));
     }
 
-    postFood() {
+    postFood(cb2) {
+      const self = this
+      console.log(self)
       AsyncStorage.getItem('userId').then(data => this.setState({userId: data}))
       fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food', {
         method: 'POST',
@@ -67,15 +70,15 @@ export default class PostingFood extends Component {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          food_title: this.state.title,
-          food_pic: this.state.pic,
-          food_price: this.state.price,
-          food_qty: this.state.quantity,
-          food_desc: this.state.description,
-          food_tags: this.state.tags,
-          _userId: this.state.userId
+          food_title: self.state.title,
+          food_pic: self.state.pic,
+          food_price: self.state.price,
+          food_qty: self.state.quantity,
+          food_desc: self.state.description,
+          food_tags: self.state.tags,
+          _userId: self.state.userId
         })
-      })
+      }).then(res => res.json).then(data => cb2)
     }
   // componentDidMount() {
     // AsyncStorage.getItem("myKey").then((value) => {
@@ -126,8 +129,7 @@ export default class PostingFood extends Component {
               <View style={{alignItems:'center'}}>
                 <Button onPress={
                     ()=> {
-                      this.upload()
-                      this.postFood()
+                      this.upload(this.postFood, () => this.props.navigator.resetTo({title:'HomeScene'}))
                     }
                   } style={{borderRadius:5, alignItems:'center',justifyContent:'center',width: width/4, height: height/20, backgroundColor: '#00B16A'}}>
                   <Text style={{color:'#FFFFFF'}}>Submit</Text>
