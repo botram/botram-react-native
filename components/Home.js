@@ -45,7 +45,6 @@ export default class Home extends Component {
       if(!token) {
         this.props.navigator.resetTo({title:'LoginScene'});
       } else {
-        console.log(token);
         fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
           method: 'GET',
           headers: {
@@ -53,11 +52,9 @@ export default class Home extends Component {
           }
         })
         .then(res => {
-          console.log(res);
           return res.json()
         })
         .then(data => {
-          console.log(data);
           this.setState ({foodList: data })
         })
       }
@@ -99,7 +96,6 @@ export default class Home extends Component {
           return true;
         }
       })
-        // AsyncStorage.getItem('token').then(data => console.log(data))
         return (
             <Drawer
               ref={(ref) => { this._drawer = ref; }}

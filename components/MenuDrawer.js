@@ -30,21 +30,30 @@ export default class MenuDrawer extends Component {
       user : '',
       name : '',
       profilepicture : '../images/ava.png',
+      token: '',
+      userid: ''
     }
   }
   componentDidMount() {
-    AsyncStorage.getItem('userId').then(data => {
-      this.setState({
-        user:data
+    // AsyncStorage.getItem('token').then(data => this.setState({token: data}))
+    // AsyncStorage.getItem('userId').then(data => this.setState({userId: data})
+
+    AsyncStorage.getItem('userId').then(userId => {
+      AsyncStorage.getItem('token').then(token => {
+        fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/${userId}`, {
+          method: 'GET',
+          headers: {
+            token: token
+          }
+        })
+        .then(res => res.json())
+        .then(user => {
+          this.setState ({
+            name: user.name,
+            profilepicture: user.pic,
+          })
+        })
       })
-      fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/${data}`)
-      .then(res => res.json())
-      .then(user => {
-        this.setState ({
-        name: user.name,
-        profilepicture: user.pic,
-       })
-     })
     });
   }
   render() {
@@ -94,7 +103,6 @@ export default class MenuDrawer extends Component {
               <TouchableOpacity onPress = {() => {
                 AsyncStorage.removeItem("token")
                 this.props.nav.resetTo({title:'LoginScene'})
-                AsyncStorage.getItem('token').then(data => console.log(data))
               }}>
                 <Text style={styles.txtmenu}>Logout</Text>
               </TouchableOpacity>
