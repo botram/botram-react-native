@@ -34,20 +34,35 @@ export default class Home extends Component {
     super()
     this.state = {
       klik  : 1,
-      foodList: []
+      foodList: [],
+
     }
   }
 
 
   componentDidMount() {
-    const token = AsyncStorage.getItem("token").then(token => {
+    AsyncStorage.getItem("token").then(token => {
       if(!token) {
         this.props.navigator.resetTo({title:'LoginScene'});
+      } else {
+        console.log(token);
+        fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
+          method: 'GET',
+          headers: {
+            token: token
+          }
+        })
+        .then(res => {
+          console.log(res);
+          return res.json()
+        })
+        .then(data => {
+          console.log(data);
+          this.setState ({foodList: data })
+        })
       }
-    });
-    fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food`)
-    .then(res => res.json())
-    .then(data => this.setState ({foodList: data.success }))
+    })
+    .catch(err => console.log(err))
   }
 
   componentWillReceiveProps(nextProps) {

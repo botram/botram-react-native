@@ -35,23 +35,26 @@ export default class Botram extends Component {
                   alert('Error fetching data: ' + error.toString());
                 } else {
                   const self = this;
-                  fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users', {
+                  const user = {
+                    email: result.email || '',
+                    name: result.name,
+                    pic: result.picture.data.url,
+                    id_fb: result.id
+                  }
+                  console.log(JSON.stringify(user));
+                  fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users', {
                     method: 'POST',
                     headers: {
-                      'Accept': 'application/json',
-                      'Content-Type': 'application/json',
+                      // 'Accept': 'application/json',
+                      'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: JSON.stringify({
-                      email: result.email || '',
-                      name: result.name,
-                      pic: result.picture.data.url,
-                      id_fb: result.id
-                    })
+                    body: JSON.stringify(user)
                   }).then((response) => {
+
+                    console.log(response);
                     return response.json()
-
-
                   }).then(data => {
+                    console.log(data)
                     AsyncStorage.setItem("token", data.token)
                     AsyncStorage.setItem("userId", data.userId)
                     // console.log(data);

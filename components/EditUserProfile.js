@@ -42,7 +42,7 @@ export default class UserProfile extends Component {
       this.setState({
         user:data
       })
-      fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/${data}`)
+      fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/${data}`)
       .then(res => res.json())
       .then(user => {
         console.log(user);

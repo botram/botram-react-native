@@ -23,6 +23,7 @@ export default class FoodItemCard extends Component {
       <Container>
         <ScrollView>
           {this.props.data.map((data, index) => {
+            console.log(data);
             return(
               <Content key={index}>
                   <Card>
@@ -36,7 +37,7 @@ export default class FoodItemCard extends Component {
                             <Text style={{fontSize: width/35, marginRight: width/80}}>{data._userId.city}</Text>
                           </Col>
                           <Col size={15}>
-                            <Text style={{color:'#6C7A89', marginTop: width/20, fontSize: width/27}}>{data._userId.rating.length}/5 <Icon name="star" style={{fontSize: width/25}}/></Text>
+                            <Text style={{color:'#6C7A89', marginTop: width/20, fontSize: width/27}}>{data._userId.rating}/5 <Icon name="star" style={{fontSize: width/25}}/></Text>
                           </Col>
                         </Grid>
                      </CardItem>
@@ -85,7 +86,7 @@ export default class FoodItemCard extends Component {
   }
   render(){
     return(
-      this.props.data ? this.renderScene() : this.renderLoading()
+      this.renderScene()
     );
     }
 }
