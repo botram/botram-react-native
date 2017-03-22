@@ -40,18 +40,25 @@ export default class UserProfile extends Component {
   }
   componentDidMount() {
     AsyncStorage.getItem('userId').then(data => {
-      this.setState({
-        user:data
-      })
-      fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/${data}`)
-      .then(res => res.json())
-      .then(user => {
-        console.log(user);
-        this.setState ({
-        name: user.name,
-        profilepicture: user.pic,
+      AsyncStorage.getItem('token').then(token => {
+        this.setState({
+          user:data
+        })
+        fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/${data}`,{
+          method: 'GET',
+          headers: {
+            token: token
+          }
+        })
+        .then(res => res.json())
+        .then(user => {
+          console.log(user);
+          this.setState ({
+          name: user.name,
+          profilepicture: user.pic,
+         })
        })
-     })
+      });
     });
   }
   render() {
