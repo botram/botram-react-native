@@ -5,12 +5,8 @@ import { View, AsyncStorage } from 'react-native';
 export default class Botram extends Component {
 
   goToHomeScene = () => {
-    // console.log('masuk reset to');
     this.props.navigator.resetTo({title:'HomeScene'});
   }
-
-  postUserData = () => {
-    }
 
   render(){
     return(
@@ -41,23 +37,19 @@ export default class Botram extends Component {
                     pic: result.picture.data.url,
                     id_fb: result.id
                   }
-                  console.log(JSON.stringify(user));
                   fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users', {
                     method: 'POST',
                     headers: {
-                      // 'Accept': 'application/json',
-                      'Content-Type': 'application/x-www-form-urlencoded',
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(user)
                   }).then((response) => {
-
-                    console.log(response);
                     return response.json()
                   }).then(data => {
-                    console.log(data)
+                    console.log(data);
                     AsyncStorage.setItem("token", data.token)
                     AsyncStorage.setItem("userId", data.userId)
-                    // console.log(data);
                     self.goToHomeScene()
                   })
                   .catch(err => console.log(err))

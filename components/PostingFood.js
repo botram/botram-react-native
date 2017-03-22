@@ -41,12 +41,14 @@ export default class PostingFood extends Component {
       submitLoading: true,
     });
     AsyncStorage.getItem('userId').then(userId => {
+        AsyncStorage.getItem('token').then(token => {
       this.setState({userId: userId})
       fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'token': token
         },
         body: JSON.stringify({
           food_title: self.state.title,
@@ -62,7 +64,7 @@ export default class PostingFood extends Component {
         cbRedirect()
       })
     })
-
+    })
   }
 
     upload(cbRedirect, self) {

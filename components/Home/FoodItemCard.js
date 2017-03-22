@@ -23,7 +23,6 @@ export default class FoodItemCard extends Component {
       <Container>
         <ScrollView>
           {this.props.data.map((data, index) => {
-            console.log(data);
             return(
               <Content key={index}>
                   <Card>
