@@ -13,6 +13,9 @@ var {width, height} = require('Dimensions').get('window');
 export default class FoodItemCard extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      foodId : '',
+    }
   }
 
   renderScene(){
@@ -53,8 +56,14 @@ export default class FoodItemCard extends Component {
                          <Row>
                           <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Qty : {data.food_qty} pcs</Text></Col>
                           <Col size={23}>
-                             <Button style={{width: width/5, height: height/25, backgroundColor: '#00B16A'}} onPress={() => {
-                               this.props.navigator.push({title:'FoodDetails'})
+                             <Button
+                               style={{width: width/5, height: height/25, backgroundColor: '#00B16A'}}
+                               onPress={() => {
+                                 this.setState({
+                                   foodId:data._id
+                                 })
+                               this.props.navigator.push( {title:'FoodDetails',foodId: this.state.foodId})
+
                              }}>
                                <Text style={{color: '#FFFFFF'}}>Detail</Text>
                              </Button>

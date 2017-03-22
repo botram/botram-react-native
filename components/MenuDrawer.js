@@ -29,7 +29,7 @@ export default class MenuDrawer extends Component {
     this.state = {
       user : '',
       name : '',
-      profilepicture : '',
+      profilepicture : '../images/ava.png',
     }
   }
   componentDidMount() {
@@ -40,7 +40,6 @@ export default class MenuDrawer extends Component {
       fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/${data}`)
       .then(res => res.json())
       .then(user => {
-        console.log(user);
         this.setState ({
         name: user.name,
         profilepicture: user.pic,
@@ -49,7 +48,6 @@ export default class MenuDrawer extends Component {
     });
   }
   render() {
-    console.log(this.state.profilepicture);
     return (
       <View style={styles.container}>
         <View style={styles.header}>
