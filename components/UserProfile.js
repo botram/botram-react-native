@@ -36,6 +36,8 @@ export default class UserProfile extends Component {
       user : '',
       name : '',
       profilepicture : '../images/ava.png',
+      address : '',
+      phone: ''
     }
   }
   componentDidMount() {
@@ -52,10 +54,12 @@ export default class UserProfile extends Component {
         })
         .then(res => res.json())
         .then(user => {
-          console.log(user);
           this.setState ({
           name: user.name,
           profilepicture: user.pic,
+          city: user.city || 'please update your city',
+          address: user.address || 'please update your address',
+          phone: user.phone || 'please update your phone'
          })
        })
       });
@@ -88,17 +92,22 @@ export default class UserProfile extends Component {
           </View>
           <View style={styles.profileDetail}>
             <Text style={{marginTop: height/50, fontSize: height/40}}>
+              <Icon name='location-city' size={20} color={'#bf4d4d'} />
+              {this.state.city}
+            </Text>
+            <Text style={{marginTop: height/50, fontSize: height/40}}>
               <Icon name='location-on' size={20} color={'#bf4d4d'} />
-              Jalan raya kemang deket rumah gana
+              {this.state.address}
             </Text>
             <Text style={{marginTop: height/50, fontSize: height/40}}>
               <Icon name='phone-iphone' size={20} color={'#bf4d4d'} style={{alignItems:'center'}} />
-              08123456789
+              {this.state.phone}
             </Text>
         </View>
 
       </Content>
       <Button
+
         onPress={() => {this.props.navigator.push({title:'EditUserProfile'})}}
         style={{width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
         <Text style={{color:'#FFFFFF', fontSize:height/35}}>
