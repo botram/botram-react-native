@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Container, Content, Tab, Tabs } from 'native-base';
+import { Container, Content, Tab, Tabs, TabHeading } from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
@@ -24,14 +24,14 @@ export default class Notification extends Component {
             </Col>
             <Col size={70}><Text style={{padding:10,color: '#FFFFFF',fontSize:22, }}>Notifications</Text></Col>
           </Row>
-            <Tabs >
-                <Tab heading="Order">
-                  <OrderNotification />
-                </Tab>
-                <Tab heading="Request">
-                  <RequestNotification />
-                </Tab>
-            </Tabs>
+          <Tabs  >
+            <Tab heading={<TabHeading style={{ backgroundColor: '#B71C1C'}}><Text style={{color: '#FFFFFF',fontSize:width/22}}>ORDER</Text></TabHeading>}>
+              <OrderNotification />
+            </Tab>
+            <Tab heading={<TabHeading style={{ backgroundColor: '#B71C1C'}}><Text style={{color: '#FFFFFF',fontSize:width/22}}>REQUEST</Text></TabHeading>}>
+              <RequestNotification />
+            </Tab>
+          </Tabs>
       </Container>
     )
   }
