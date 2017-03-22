@@ -108,6 +108,7 @@ export default class PostingFood extends Component {
           </Row>
           <ScrollView>
           <View style={styles.container}>
+            <View style={{height:height/1.25}}>
               <Image style={{ resizeMode: 'cover', width: width, height: height/3 }}source={{uri: this.props.pathUri}}/>
               <View style={{marginTop:10,marginBottom:10,}}>
                 <TextInput
@@ -125,21 +126,21 @@ export default class PostingFood extends Component {
                 <TextInput
                   onChangeText={(text) => this.setState({description:text})}
                   placeholder='Description' multiline numberOfLines = {4} style={styles.txtDescription}/>
+                </View>
               </View>
-              <View style={{alignItems:'center'}}>
-                <Button onPress={
-                    ()=> {
-                      this.upload(this.postFood, () => this.props.navigator.resetTo({title:'HomeScene'}))
-                    }
-                  } style={{borderRadius:5, alignItems:'center',justifyContent:'center',width: width/4, height: height/20, backgroundColor: '#00B16A'}}>
-                  <Text style={{color:'#FFFFFF'}}>Submit</Text>
+              <View style={{alignItems:'center', }}>
+                <Button
+                  onPress={()=> {this.upload(this.postFood, () => this.props.navigator.resetTo({title:'HomeScene'}))}}
+                  style={{ width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
+                  <Text style={{color:'#FFFFFF', fontSize:height/35}}>
+                    SUBMIT
+                  </Text>
                 </Button>
               </View>
             </View>
             </ScrollView>
         </View>
       );
-      // console.log('');
     }
 }
 
