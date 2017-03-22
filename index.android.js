@@ -57,7 +57,7 @@ export default class Botram extends Component {
     }
     else if (route.title === 'UserProfileScene') {
       return (
-        <UserProfileScene route={route} navigator={navigator} />
+        <UserProfileScene route={route} navigator={navigator} profile={route.profile} />
       )
     }
     else if (route.title === 'PostingFoodScene') {
