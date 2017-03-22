@@ -42,7 +42,7 @@ export default class PostingFood extends Component {
     });
     AsyncStorage.getItem('userId').then(userId => {
       this.setState({userId: userId})
-      fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food', {
+      fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
