@@ -52,7 +52,7 @@ export default class Botram extends Component {
     }
     else if (route.title === 'FoodDetails') {
       return (
-        <FoodDetails route={route} navigator={navigator} />
+        <FoodDetails route={route} navigator={navigator} foodId={route.foodId}/>
       )
     }
     else if (route.title === 'UserProfileScene') {
@@ -91,7 +91,7 @@ export default class Botram extends Component {
     const appThis = this;
     return (
       <Navigator
-        initialRoute={{title: 'HomeScene' }}
+        initialRoute={{title: 'FoodDetails' }}
         renderScene={appThis.renderNewScene}
         configureScene={(route, routeStack) =>
           Navigator.SceneConfigs.FadeAndroid}
