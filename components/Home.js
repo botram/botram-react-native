@@ -84,7 +84,7 @@ export default class Home extends Component {
           return true;
         }
       })
-        AsyncStorage.getItem('token').then(data => console.log(data))
+        // AsyncStorage.getItem('token').then(data => console.log(data))
         return (
             <Drawer
               ref={(ref) => { this._drawer = ref; }}
