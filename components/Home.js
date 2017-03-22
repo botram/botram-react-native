@@ -42,7 +42,7 @@ export default class Home extends Component {
   componentDidMount() {
     const token = AsyncStorage.getItem("token").then(token => {
       if(!token) {
-        this.props.navigator.popToTop();
+        this.props.navigator.resetTo({title:'LoginScene'});
       }
     });
     fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food`)
@@ -53,7 +53,7 @@ export default class Home extends Component {
   componentWillReceiveProps(nextProps) {
     const token = AsyncStorage.getItem("token").then(token => {
       if(!token) {
-        nextProps.navigator.popToTop();
+        nextProps.navigator.resetTo({title:'LoginScene'});
       }
     });
   }
@@ -84,7 +84,7 @@ export default class Home extends Component {
           return true;
         }
       })
-        AsyncStorage.getItem('token').then(data => console.log(data))
+        // AsyncStorage.getItem('token').then(data => console.log(data))
         return (
             <Drawer
               ref={(ref) => { this._drawer = ref; }}

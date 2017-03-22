@@ -16,6 +16,7 @@ import {
 var {width, height} = require('Dimensions').get('window');
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import foods from './../dummyFiles/pecel.jpg'
+import { RNS3 } from 'react-native-aws3';
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
@@ -23,11 +24,62 @@ export default class PostingFood extends Component {
   constructor(props){
     super(props)
     this.state={
-      myKey:'',
+      'title':'',
+      'price':'',
+      'quantity':'',
+      'tags':'',
+      'description':'',
+      'pic': '',
+      'userId': ''
+    }
+  }
+
+    upload(cb, cb2) {
+      const file = {
+        uri: this.props.pathUri,
+        name: 'food' + Date.now() + '.jpg',
+        type: 'image/jpeg'
+      };
+      this.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram/foods/food' + Date.now() + '.jpg'})
+      const options = {
+        keyPrefix: 'foods/',
+        bucket: 'botram',
+        region: 'ap-southeast-1',
+        accessKey: 'AKIAJYWMHRSF565RIIYQ',
+        secretKey: '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',
+        successActionStatus: 201
+      };
+      RNS3.put(file, options).then(response => {
+        if (response.status !== 201) {
+          throw new Error('Failed to upload image to S3', response);
+        }
+        cb(cb2);
+        console.log('*** BODY ***', response.body);
+      })
+        .catch(err => console.error(err));
     }
 
-
-  }
+    postFood(cb2) {
+      const self = this
+      console.log(self)
+      AsyncStorage.getItem('userId').then(data => this.setState({userId: data}))
+      fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          food_title: self.state.title,
+          food_pic: self.state.pic,
+          food_price: self.state.price,
+          food_qty: self.state.quantity,
+          food_desc: self.state.description,
+          food_tags: self.state.tags,
+          _userId: self.state.userId
+        })
+      }).then(res => res.json).then(data => cb2)
+    }
   // componentDidMount() {
     // AsyncStorage.getItem("myKey").then((value) => {
     //   this.setState({"myKey": value});
@@ -59,15 +111,27 @@ export default class PostingFood extends Component {
               <Image style={{ resizeMode: 'cover', width: width, height: height/3 }}source={{uri: this.props.pathUri}}/>
               <View style={{marginTop:10,marginBottom:10,}}>
                 <TextInput
-                  onChangeText={(text) => this.saveData(text)}
+                  onChangeText={(text) => this.setState({title:text})}
                   placeholder='Title' style={styles.txtMenu}/>
-                <TextInput placeholder='Price' maxLength = {3} keyboardType='numeric' style={styles.txtMenu}/>
-                <TextInput placeholder='Quantity' maxLength = {3} keyboardType='numeric' style={styles.txtMenu}/>
-                <TextInput placeholder='Tags (separate by space)' style={styles.txtMenu}/>
-                <TextInput placeholder='Description' multiline numberOfLines = {4} style={styles.txtDescription}/>
+                <TextInput
+                  onChangeText={(text) => this.setState({price:text})}
+                  placeholder='Price' maxLength = {10} keyboardType='numeric' style={styles.txtMenu}/>
+                <TextInput
+                  onChangeText={(text) => this.setState({quantity:text})}
+                  placeholder='Quantity' maxLength = {3} keyboardType='numeric' style={styles.txtMenu}/>
+                <TextInput
+                  onChangeText={(text) => this.setState({tags:text})}
+                  placeholder='Tags (separate by space)' style={styles.txtMenu}/>
+                <TextInput
+                  onChangeText={(text) => this.setState({description:text})}
+                  placeholder='Description' multiline numberOfLines = {4} style={styles.txtDescription}/>
               </View>
               <View style={{alignItems:'center'}}>
-                <Button style={{borderRadius:5, alignItems:'center',justifyContent:'center',width: width/4, height: height/20, backgroundColor: '#00B16A'}}>
+                <Button onPress={
+                    ()=> {
+                      this.upload(this.postFood, () => this.props.navigator.resetTo({title:'HomeScene'}))
+                    }
+                  } style={{borderRadius:5, alignItems:'center',justifyContent:'center',width: width/4, height: height/20, backgroundColor: '#00B16A'}}>
                   <Text style={{color:'#FFFFFF'}}>Submit</Text>
                 </Button>
               </View>

@@ -5,7 +5,7 @@ import { View, AsyncStorage } from 'react-native';
 export default class Botram extends Component {
 
   goToHomeScene = () => {
-    console.log('masuk reset to');
+    // console.log('masuk reset to');
     this.props.navigator.resetTo({title:'HomeScene'});
   }
 
@@ -52,9 +52,9 @@ export default class Botram extends Component {
 
 
                   }).then(data => {
-                    AsyncStorage.setItem("token", data)
-
-                    AsyncStorage.getItem("token").then(value => console.log(value));
+                    AsyncStorage.setItem("token", data.token)
+                    AsyncStorage.setItem("userId", data.userId)
+                    // console.log(data);
                     self.goToHomeScene()
                   })
                   .catch(err => console.log(err))

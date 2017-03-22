@@ -12,6 +12,7 @@ import PostingFoodScene from './components/PostingFood'
 import SearchScene from './components/SearchScene';
 import NotificationScene from './components/Notification'
 import YourFoodsScene from './components/YourFoods';
+import EditUserProfile from './components/EditUserProfile';
 
 
 import {
@@ -79,13 +80,18 @@ export default class Botram extends Component {
         <YourFoodsScene route={route} navigator={navigator} />
       )
     }
+    else if (route.title === "EditUserProfile") {
+      return (
+        <EditUserProfile route={route} navigator={navigator} />
+      )
+    }
   }
 
   render() {
     const appThis = this;
     return (
       <Navigator
-        initialRoute={{title: 'LoginScene' }}
+        initialRoute={{title: 'HomeScene' }}
         renderScene={appThis.renderNewScene}
         configureScene={(route, routeStack) =>
           Navigator.SceneConfigs.FadeAndroid}
