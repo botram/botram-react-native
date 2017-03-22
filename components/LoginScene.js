@@ -49,10 +49,10 @@ export default class CarouselExample extends Component {
     return (
       <View style={{ justifyContent: 'center', alignItems: 'center',}} onLayout={this._onLayoutDidChange}>
         <Carousel
-          delay={5000}
+          delay={4000}
           style={this.state.size}
           autoplay
-          bullets={true}
+          bullets={false}
         >
           <Image
             style={{flex: 1, width:'100%', height:'100%'}}
@@ -67,13 +67,15 @@ export default class CarouselExample extends Component {
             source={require('../images/3.jpg')}
           />
         </Carousel>
+
+        <View style={{width: width, height: height, backgroundColor: 'rgba(0, 0, 0, .5)', position: 'absolute'}} />
         <Image
           source={require('../images/logo.png')}
           style={{
             position:'absolute',
-            width: width/width*200,
-            height: width/width*51.5,
-            bottom: width + 50,
+            width: 200,
+            height: 51.5,
+            bottom: width,
             flexDirection: 'row'
           }}
         />

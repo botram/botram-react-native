@@ -24,13 +24,36 @@ import thumb from '../dummyFiles/thumb.jpg'
 var {width, height} = require('Dimensions').get('window');
 
 export default class MenuDrawer extends Component {
+  constructor(){
+    super()
+    this.state = {
+      user : '',
+      name : '',
+      profilepicture : '../images/ava.png',
+    }
+  }
+  componentDidMount() {
+    AsyncStorage.getItem('userId').then(data => {
+      this.setState({
+        user:data
+      })
+      fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/${data}`)
+      .then(res => res.json())
+      .then(user => {
+        this.setState ({
+        name: user.name,
+        profilepicture: user.pic,
+       })
+     })
+    });
+  }
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Image style={styles.avapicture} source={thumb} />
+          <Image style={styles.avapicture} source={{uri:this.state.profilepicture}} />
           <Text style={styles.nameprofile}>
-            BU TINI
+            {this.state.name}
           </Text>
         </View>
         <View style={styles.listmenu}>

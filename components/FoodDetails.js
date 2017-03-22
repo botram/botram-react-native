@@ -25,6 +25,20 @@ var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
 export default class FoodDetails extends Component {
+  constructor () {
+    super()
+    this.state = {
+      fooddata: '',
+    }
+  }
+
+
+  componentDidMount() {
+    fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food/${this.props.foodId}`)
+    .then(res => res.json())
+    .then(data => this.setState ({fooddata: data }))
+    // console.log(this.state.fooddata);
+  }
     render() {
       return (
         <Container>

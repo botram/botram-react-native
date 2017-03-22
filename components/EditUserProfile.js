@@ -10,6 +10,7 @@ import {
   Text,
   View,
   Image,
+  TextInput,
   AsyncStorage,
   TouchableOpacity,
 } from 'react-native';
@@ -26,8 +27,6 @@ const iconhome = (<Icon name="home" size={30} color="#b71c1c" />)
 const iconcamera = (<Icon name="photo-camera" size={30} color="#6C7A89" />)
 const iconfav = (<Icon name="favorite" size={30} color="#6C7A89" />)
 const iconBack = (<Icon name="navigate-before" size={30} color="#FFFFFF" style={{padding:10}}/>)
-
-import thumb from '../dummyFiles/thumb.jpg'
 
 export default class UserProfile extends Component {
   constructor(){
@@ -59,13 +58,13 @@ export default class UserProfile extends Component {
       <Container>
         <View>
           <Row style={{height: 50,backgroundColor:'#B71C1C',}}>
-           <Col size={32}>
-             <TouchableOpacity  onPress={() => {this.props.navigator.popToTop()}}>
+           <Col size={30}>
+             <TouchableOpacity  onPress={() => {this.props.navigator.popN(1)}}>
                <Text style={{padding:10,}}>{iconBack}</Text>
              </TouchableOpacity>
 
            </Col>
-           <Col size={68}><Text style={{padding:10,color: '#FFFFFF',fontSize:22, }}>My Profile</Text></Col>
+           <Col size={70}><Text style={{padding:10,color: '#FFFFFF',fontSize:22, }}>Edit Profile</Text></Col>
           </Row>
         </View>
 
@@ -79,23 +78,22 @@ export default class UserProfile extends Component {
             </Text>
             <Text style={{color:'#6C7A89', marginTop: width/45, fontSize: width/25}}>4/5 <Icon name="star" style={{fontSize: width/25}}/></Text>
           </View>
-          <View style={styles.profileDetail}>
-            <Text style={{marginTop: height/50, fontSize: height/40}}>
-              <Icon name='location-on' size={20} color={'#bf4d4d'} />
-              Jalan raya kemang deket rumah gana
-            </Text>
-            <Text style={{marginTop: height/50, fontSize: height/40}}>
-              <Icon name='phone-iphone' size={20} color={'#bf4d4d'} style={{alignItems:'center'}} />
-              08123456789
-            </Text>
-        </View>
+
+          <View style={styles.containereditfield}>
+            <View style={{marginTop:10,marginBottom:10,width:width/1.2}}>
+              <TextInput
+                placeholder='Address' style={styles.txtMenu}/>
+              <TextInput
+                placeholder='Phone Number' maxLength = {13} keyboardType='numeric' style={styles.txtMenu}/>
+            </View>
+          </View>
 
       </Content>
       <Button
-        onPress={() => {this.props.navigator.push({title:'EditUserProfile'})}}
+        onPress={() => {this.props.navigator.popN(1)}}
         style={{width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
         <Text style={{color:'#FFFFFF', fontSize:height/35}}>
-          UPDATE PROFILE
+          UPDATE
         </Text>
       </Button>
       </Container>
@@ -128,10 +126,7 @@ var styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
-  buttonUpdate: {
-    // height:height/4,
-    // margin: width/40,
-    // justifyContent: 'flex-end',
-    // alignItems: 'center',
+  containereditfield: {
+    alignItems: 'center',
   },
 });
