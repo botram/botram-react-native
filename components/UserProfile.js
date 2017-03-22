@@ -35,7 +35,7 @@ export default class UserProfile extends Component {
     this.state = {
       user : '',
       name : '',
-      profilepicture : '',
+      profilepicture : '../images/ava.png',
     }
   }
   componentDidMount() {
@@ -59,13 +59,13 @@ export default class UserProfile extends Component {
       <Container>
         <View>
           <Row style={{height: 50,backgroundColor:'#B71C1C',}}>
-           <Col size={35}>
+           <Col size={32}>
              <TouchableOpacity  onPress={() => {this.props.navigator.popToTop()}}>
                <Text style={{padding:10,}}>{iconBack}</Text>
              </TouchableOpacity>
 
            </Col>
-           <Col size={65}><Text style={{padding:10,color: '#FFFFFF',fontSize:22, }}>User Profile</Text></Col>
+           <Col size={68}><Text style={{padding:10,color: '#FFFFFF',fontSize:22, }}>My Profile</Text></Col>
           </Row>
         </View>
 
@@ -91,7 +91,9 @@ export default class UserProfile extends Component {
         </View>
 
       </Content>
-      <Button style={{width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
+      <Button
+        onPress={() => {this.props.navigator.push({title:'EditUserProfile'})}}
+        style={{width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
         <Text style={{color:'#FFFFFF', fontSize:height/35}}>
           UPDATE PROFILE
         </Text>
