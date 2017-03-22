@@ -115,9 +115,10 @@ export default class PostingFood extends Component {
            </Col>
            <Col size={75}><Text style={{padding:10,color: '#FFFFFF',fontSize:22, }}>Post Your Foods</Text></Col>
           </Row>
+          <View style={{height:height/1.25}}>
           <ScrollView>
-          <View style={styles.container}>
-            <View style={{height:height/1.25}}>
+            <View style={styles.container}>
+              {/* <Image style={{ resizeMode: 'cover', width: width, height: height/3 }}source={foods}/> */}
               <Image style={{ resizeMode: 'cover', width: width, height: height/3 }}source={{uri: this.props.pathUri}}/>
               <View style={{marginTop:10,marginBottom:10,}}>
                 <TextInput
@@ -137,20 +138,17 @@ export default class PostingFood extends Component {
                   placeholder='Description' multiline numberOfLines = {4} style={styles.txtDescription}/>
                 </View>
               </View>
-
-              <View style={{alignItems:'center'}}>
-                <Button onPress={
-                    ()=> {
-                      // this.upload(this.postFood, () => this.props.navigator.resetTo({title:'HomeScene'}))
-                      this.postFood(this.upload, () => this.props.navigator.resetTo({title:'HomeScene'}))
-                    }
-                  } style={{ width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
-                  {!this.state.submitLoading ? <Text style={{color:'#FFFFFF',fontSize:height/35}}>SUBMIT</Text> : <Spinner color='white' />}
-
-                </Button>
-              </View>
-            </View>
             </ScrollView>
+          </View>
+            <Button onPress={
+                ()=> {
+                  // this.upload(this.postFood, () => this.props.navigator.resetTo({title:'HomeScene'}))
+                  this.postFood(this.upload, () => this.props.navigator.resetTo({title:'HomeScene'}))
+                }
+              } style={{ width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
+              {!this.state.submitLoading ? <Text style={{color:'#FFFFFF',fontSize:height/35}}>SUBMIT</Text> : <Spinner color='white' />}
+
+            </Button>
         </View>
       );
     }
