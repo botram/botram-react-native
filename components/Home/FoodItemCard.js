@@ -84,16 +84,6 @@ export default class FoodItemCard extends Component {
     return <Spinner color='red' />
   }
   render(){
-    // if(!this.props.data[0]){
-    //   console.log("loading");
-    // }else{
-    //   if(!this.props.data[0]._userId){
-    //     console.log("belum siap");
-    //   }else{
-    //       console.log("ready");
-    //   }
-    // }
-
     return(
       this.props.data ? this.renderScene() : this.renderLoading()
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Button,
+  Button, Spinner
 } from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import {
@@ -29,40 +29,19 @@ export default class PostingFood extends Component {
       'quantity':'',
       'tags':'',
       'description':'',
-      'pic': '',
-      'userId': ''
+      'pic': 'https://s3-ap-southeast-1.amazonaws.com/botram/foods/default-thumbnail.jpg',
+      'userId': '',
+      'submitLoading': false,
     }
   }
 
-    upload(cb, cb2) {
-      const file = {
-        uri: this.props.pathUri,
-        name: 'food' + Date.now() + '.jpg',
-        type: 'image/jpeg'
-      };
-      this.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram/foods/food' + Date.now() + '.jpg'})
-      const options = {
-        keyPrefix: 'foods/',
-        bucket: 'botram',
-        region: 'ap-southeast-1',
-        accessKey: 'AKIAJYWMHRSF565RIIYQ',
-        secretKey: '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',
-        successActionStatus: 201
-      };
-      RNS3.put(file, options).then(response => {
-        if (response.status !== 201) {
-          throw new Error('Failed to upload image to S3', response);
-        }
-        cb(cb2);
-        console.log('*** BODY ***', response.body);
-      })
-        .catch(err => console.error(err));
-    }
-
-    postFood(cb2) {
-      const self = this
-      console.log(self)
-      AsyncStorage.getItem('userId').then(data => this.setState({userId: data}))
+  postFood(cbUpload, cbRedirect) {
+    const self = this
+    self.setState({
+      submitLoading: true,
+    });
+    AsyncStorage.getItem('userId').then(userId => {
+      this.setState({userId: userId})
       fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/users/food', {
         method: 'POST',
         headers: {
@@ -76,10 +55,40 @@ export default class PostingFood extends Component {
           food_qty: self.state.quantity,
           food_desc: self.state.description,
           food_tags: self.state.tags,
-          _userId: self.state.userId
+          _userId: userId
         })
-      }).then(res => res.json).then(data => cb2)
+      }).then(res => res.json()).then(data => {
+        cbUpload(cbRedirect, self)
+        cbRedirect()
+      })
+    })
+
+  }
+
+    upload(cbRedirect, self) {
+      const file = {
+        uri: self.props.pathUri,
+        name: 'food' + Date.now() + '.jpg',
+        type: 'image/jpeg'
+      };
+      self.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram/foods/food' + Date.now() + '.jpg'})
+      const options = {
+        keyPrefix: 'foods/',
+        bucket: 'botram',
+        region: 'ap-southeast-1',
+        accessKey: 'AKIAJYWMHRSF565RIIYQ',
+        secretKey: '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',
+        successActionStatus: 201
+      };
+      RNS3.put(file, options).then(response => {
+        if (response.status !== 201) {
+          throw new Error('Failed to upload image to S3', response);
+        }
+        console.log('*** BODY ***', response.body);
+      })
+        .catch(err => console.error(err));
     }
+
   // componentDidMount() {
     // AsyncStorage.getItem("myKey").then((value) => {
     //   this.setState({"myKey": value});
@@ -128,13 +137,16 @@ export default class PostingFood extends Component {
                   placeholder='Description' multiline numberOfLines = {4} style={styles.txtDescription}/>
                 </View>
               </View>
-              <View style={{alignItems:'center', }}>
-                <Button
-                  onPress={()=> {this.upload(this.postFood, () => this.props.navigator.resetTo({title:'HomeScene'}))}}
-                  style={{ width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
-                  <Text style={{color:'#FFFFFF', fontSize:height/35}}>
-                    SUBMIT
-                  </Text>
+
+              <View style={{alignItems:'center'}}>
+                <Button onPress={
+                    ()=> {
+                      // this.upload(this.postFood, () => this.props.navigator.resetTo({title:'HomeScene'}))
+                      this.postFood(this.upload, () => this.props.navigator.resetTo({title:'HomeScene'}))
+                    }
+                  } style={{ width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
+                  {!this.state.submitLoading ? <Text style={{color:'#FFFFFF',fontSize:height/35}}>SUBMIT</Text> : <Spinner color='white' />}
+
                 </Button>
               </View>
             </View>
