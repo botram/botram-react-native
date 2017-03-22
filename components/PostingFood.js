@@ -20,6 +20,8 @@ import { RNS3 } from 'react-native-aws3';
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
+require('dotenv').config()
+
 export default class PostingFood extends Component {
   constructor(props){
     super(props)
@@ -76,10 +78,10 @@ export default class PostingFood extends Component {
       self.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram/foods/food' + Date.now() + '.jpg'})
       const options = {
         keyPrefix: 'foods/',
-        bucket: 'botram',
-        region: 'ap-southeast-1',
-        accessKey: 'AKIAJYWMHRSF565RIIYQ',
-        secretKey: '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',
+        bucket: proccess.env.BUCKET,
+        region: proccess.env.REGION,
+        accessKey: proccess.env.ACCESSKEY,
+        secretKey: proccess.env.SECRETKEY,
         successActionStatus: 201
       };
       RNS3.put(file, options).then(response => {
