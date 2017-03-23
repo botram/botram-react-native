@@ -1,41 +1,34 @@
 import React, { Component } from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
-
-
-  Footer,
-  FooterTab,
-  Drawer,
-  Button,
-  Container, Content, Card, CardItem, Left, Body, Thumbnail, Right
+  Container,
+  Content,
+  CardItem,
+  Thumbnail
 } from 'native-base';
-import thumb from './../dummyFiles/thumb.jpg'
-import Pic from './../dummyFiles/image.jpg'
-import SideBar from './MenuDrawer';
-import { Col, Row, Grid } from "react-native-easy-grid";
 import {
   StyleSheet,
-  Alert,
   Text,
   View,
   Image,
-  ToastAndroid,
   ScrollView,
-  BackAndroid,
   AsyncStorage,
   TouchableOpacity,
 } from 'react-native'
+import {
+  Col,
+  Row,
+  Grid
+} from "react-native-easy-grid";
+
 var {width, height} = require('Dimensions').get('window');
-import Icon from 'react-native-vector-icons/MaterialIcons';
-var {width, height} = require('Dimensions').get('window');
+
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
 export default class FoodDetails extends Component {
   constructor () {
     super()
     this.state = {
-      name: '',
-      food_pic: '',
-      food_title: '',
       food_tags: [],
     }
   }
@@ -56,7 +49,6 @@ export default class FoodDetails extends Component {
           city: data._userId.city,
           address: data._userId.address,
           pic: data._userId.pic,
-          rating: data._userId.rating,
           food_pic: data.food_pic,
           food_title: data.food_title,
           food_price: data.food_price,
@@ -88,14 +80,11 @@ export default class FoodDetails extends Component {
                  <CardItem style={{margin: -3}}>
                     <Grid>
                       <Col size={20}><Thumbnail source={{uri:this.state.pic}} /></Col>
-                      <Col size={65} style={{marginTop: width/40}}>
+                      <Col size={80} style={{marginTop: width/40}}>
                         <Text style={{color:'#b71c1c', fontWeight: 'bold'}}>
                           {this.state.name}
                         </Text>
                         <Text style={{fontSize: width/35, marginRight: width/80}}>{this.state.city}</Text>
-                      </Col>
-                      <Col size={15}>
-                        <Text style={{color:'#6C7A89', marginTop: width/20, fontSize: width/27}}>{this.state.rating}/5 <Icon name="star" style={{fontSize: width/25}}/></Text>
                       </Col>
                     </Grid>
                  </CardItem>
@@ -132,20 +121,6 @@ export default class FoodDetails extends Component {
                  </CardItem>
               </Content>
             </ScrollView>
-            <Button
-              onPress={() => Alert.alert(
-                'Confirmation',
-                'Are you sure to request this item?',
-                [
-                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-                  {text: 'OK', onPress: () => console.log('OK Pressed!')},
-                ]
-              )}
-              style={{ width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
-              <Text style={{color:'#FFFFFF', fontSize:height/35}}>
-                REQUEST
-              </Text>
-            </Button>
           </Container>
         </View>
       </Container>
@@ -160,16 +135,6 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-  },
-  judul: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
   rowoption: {
     marginBottom: height/85,
