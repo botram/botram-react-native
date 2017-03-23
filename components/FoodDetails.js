@@ -14,6 +14,7 @@ import SideBar from './MenuDrawer';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import {
   StyleSheet,
+  Alert,
   Text,
   View,
   Image,
@@ -25,7 +26,6 @@ import {
 } from 'react-native'
 var {width, height} = require('Dimensions').get('window');
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import FoodItemDetails from './Home/FoodItemDetails'
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
@@ -53,6 +53,8 @@ export default class FoodDetails extends Component {
       .then(data => {
         this.setState ({
           name: data._userId.name,
+          city: data._userId.city,
+          address: data._userId.address,
           pic: data._userId.pic,
           rating: data._userId.rating,
           food_pic: data.food_pic,
@@ -110,6 +112,12 @@ export default class FoodDetails extends Component {
                       <Col size={23}><Text style={{color: '#282828'}}>Rp {this.state.food_price}</Text></Col>
                      </Row>
                      <Row>
+                       <Text style={{color: '#282828', marginRight: width/100, fontSize: width/25, fontWeight: 'bold'}}>Alamat</Text>
+                     </Row>
+                     <Row style={styles.rowoption}>
+                       <Text style={{color: '#282828', marginRight: width/100, fontSize: width/25, }}>{this.state.address}</Text>
+                     </Row>
+                     <Row>
                        <Text style={{color: '#282828', marginRight: width/100, fontSize: width/25, fontWeight: 'bold'}}>Deskripsi</Text>
                      </Row>
                      <Row style={styles.rowoption}>
@@ -125,6 +133,14 @@ export default class FoodDetails extends Component {
               </Content>
             </ScrollView>
             <Button
+              onPress={() => Alert.alert(
+                'Confirmation',
+                'Are you sure to request this item?',
+                [
+                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+                  {text: 'OK', onPress: () => console.log('OK Pressed!')},
+                ]
+              )}
               style={{ width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
               <Text style={{color:'#FFFFFF', fontSize:height/35}}>
                 REQUEST
