@@ -1,28 +1,10 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {
-  Container,
-  Content,
-  CardItem,
-  Thumbnail
-} from 'native-base';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  AsyncStorage,
-  TouchableOpacity,
-} from 'react-native'
-import {
-  Col,
-  Row,
-  Grid
-} from "react-native-easy-grid";
+import { Container, Content, CardItem, Thumbnail } from 'native-base';
+import { StyleSheet, Text, View, Image, ScrollView, AsyncStorage, TouchableOpacity, } from 'react-native'
+import { Col, Row, Grid } from "react-native-easy-grid";
 
 var {width, height} = require('Dimensions').get('window');
-
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
 export default class FoodDetails extends Component {

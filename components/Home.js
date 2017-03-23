@@ -5,28 +5,9 @@ import { bindActionCreators } from 'redux';
 import FoodItemCard from './Home/FoodItemCard';
 import { fetchTimeline } from '../action/food_action';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {
-  Container,
-  Footer,
-  FooterTab,
-  Drawer,
-  Button,
-} from 'native-base';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ToastAndroid,
-  BackAndroid,
-  TouchableOpacity,
-  AsyncStorage,
-} from 'react-native'
-import {
-  Col,
-  Row,
-  Grid
-} from "react-native-easy-grid";
+import { Col, Row, Grid } from "react-native-easy-grid";
+import { Container, Footer, FooterTab, Drawer, Button } from 'native-base';
+import { StyleSheet, Text, View, Image, ToastAndroid, BackAndroid, TouchableOpacity, AsyncStorage, } from 'react-native'
 
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="menu" size={30} color="#FFFFFF" />)
