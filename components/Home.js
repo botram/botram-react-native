@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { fetchTimeline } from '../action/food_action'
+import { connect } from 'react-redux';
+
 import {
   Container,
   Content,
@@ -29,35 +33,37 @@ const iconcamera = (<Icon name="photo-camera" size={30} color="#6C7A89" />)
 const iconfav = (<Icon name="favorite" size={30} color="#6C7A89" />)
 const iconSearch = (<Icon name="search" size={30}color="#6C7A89" />)
 
-export default class Home extends Component {
+class Home extends Component {
   constructor () {
     super()
     this.state = {
       klik  : 1,
-      foodList: [],
-
     }
   }
-
 
   componentDidMount() {
     AsyncStorage.getItem("token").then(token => {
       if(!token) {
         this.props.navigator.resetTo({title:'LoginScene'});
       } else {
-        fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
-          method: 'GET',
-          headers: {
-            token: token
-          }
-        })
-        .then(res => {
-          return res.json()
-        })
-        .then(data => {
-          this.setState ({foodList: data })
-        }).catch(err => console.log(err))
-      }
+// <<<<<<< HEAD
+        this.props.fetchTimeline(token)
+        }
+// =======
+      //   fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
+      //     method: 'GET',
+      //     headers: {
+      //       token: token
+      //     }
+      //   })
+      //   .then(res => {
+      //     return res.json()
+      //   })
+      //   .then(data => {
+      //     this.setState ({foodList: data })
+      //   }).catch(err => console.log(err))
+      // }
+// >>>>>>> 04b7dc4ffc4685e606d9f4c3eeaf98a07935ae94
     })
 
   }
@@ -114,7 +120,7 @@ export default class Home extends Component {
               </Row>
               <Container>
                 <View style={styles.container}>
-                  <FoodItemCard navigator={this.props.navigator} data={this.state.foodList}/>
+                  <FoodItemCard navigator={this.props.navigator} data={this.props.foodList}/>
                 </View>
 
                 <Footer >
@@ -144,6 +150,18 @@ export default class Home extends Component {
         );
     }
 }
+
+const mapsStateToProps = (state) =>{
+  return {
+    foodList: state.foods
+  }
+}
+
+const mapsDispatchToProps = (dispatch) => {
+  return bindActionCreators({fetchTimeline}, dispatch)
+}
+
+export default connect(mapsStateToProps, mapsDispatchToProps)(Home)
 
 var styles = StyleSheet.create({
   container: {
