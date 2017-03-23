@@ -34,10 +34,10 @@ export default class FoodDetails extends Component {
 
 
   componentDidMount() {
-    fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food/${this.props.foodId}`)
+    fetch(`http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food/${this.props.foodId}`)
     .then(res => res.json())
     .then(data => this.setState ({fooddata: data }))
-    // console.log(this.state.fooddata);
+    .catch(err => console.log(err))
   }
     render() {
       return (

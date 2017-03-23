@@ -40,7 +40,7 @@ export default class MenuDrawer extends Component {
 
     AsyncStorage.getItem('userId').then(userId => {
       AsyncStorage.getItem('token').then(token => {
-        fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/${userId}`, {
+        fetch(`http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/${userId}`, {
           method: 'GET',
           headers: {
             token: token
@@ -52,7 +52,7 @@ export default class MenuDrawer extends Component {
             name: user.name,
             profilepicture: user.pic,
           })
-        })
+        }).catch(err => console.log(err))
       })
     });
   }
