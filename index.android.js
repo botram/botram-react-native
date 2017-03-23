@@ -89,7 +89,8 @@ export default class Botram extends Component {
   }
 
   render() {
-    const appThis = this;
+    const appThis = this
+
     return (
       <Provider store={store}>
         <Navigator
