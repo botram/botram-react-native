@@ -48,7 +48,7 @@ export default class FoodItemCard extends Component {
                          <Row style={{marginBottom: height/100}}>
                           <Col size={77}>
                             <Text style={{color: '#282828', marginRight: width/100, fontSize: width/22, fontWeight: 'bold'}}>
-                              {data.food_pic}
+                              {data.food_title}
                             </Text>
                           </Col>
                           <Col size={23}><Text style={{color: '#282828'}}>Rp {data.food_price}</Text></Col>
@@ -60,9 +60,11 @@ export default class FoodItemCard extends Component {
                                style={{width: width/5, height: height/25, backgroundColor: '#00B16A'}}
                                onPress={() => {
                                  this.setState({
-                                   foodId:data._id
-                                 })
-                               this.props.navigator.push( {title:'FoodDetails',foodId: this.state.foodId})
+                                   foodId : data._id,
+                                 });
+                                 setTimeout(() => {
+                                    this.props.navigator.push( {title:'FoodDetails',foodId: this.state.foodId})
+                                 }, 100)
 
                              }}>
                                <Text style={{color: '#FFFFFF'}}>Detail</Text>

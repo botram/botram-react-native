@@ -28,31 +28,59 @@ const iconcamera = (<Icon name="photo-camera" size={30} color="#6C7A89" />)
 const iconfav = (<Icon name="favorite" size={30} color="#6C7A89" />)
 const iconBack = (<Icon name="navigate-before" size={30} color="#FFFFFF" style={{padding:10}}/>)
 
-export default class UserProfile extends Component {
+export default class EditUserProfile extends Component {
   constructor(){
     super()
     this.state = {
-      user : '',
       name : '',
-      profilepicture : '../images/ava.png',
+      profilepicture: '',
+      address: '',
+      city: '',
+      phone: ''
     }
   }
   componentDidMount() {
-    AsyncStorage.getItem('userId').then(data => {
-      this.setState({
-        user:data
+    AsyncStorage.getItem('userId').then(userId => {
+      AsyncStorage.getItem('token').then(token => {
+        const link = `http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/${userId}`
+        fetch(link, {
+          method: 'GET',
+          headers: {
+            token: token
+          }
+        })
+        .then(res => res.json())
+        .then(user => {
+          this.setState({
+            name: user.name,
+            profilepicture: user.pic,
+          })
+        })
       })
-      fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/${data}`)
-      .then(res => res.json())
-      .then(user => {
-        console.log(user);
-        this.setState ({
-        name: user.name,
-        profilepicture: user.pic,
-       })
-     })
-    });
+    })
   }
+  updateProfile(){
+    AsyncStorage.getItem('userId').then(userId => {
+      AsyncStorage.getItem('token').then(token => {
+        const link = `http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/${userId}`
+        fetch(link, {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'token': token
+          },
+          body: JSON.stringify({
+            city: this.state.city,
+            address: this.state.address,
+            phone: this.state.phone
+          })
+        })
+        .then(res => res.json())
+      })
+    })
+  }
+
   render() {
     return (
       <Container>
@@ -82,15 +110,28 @@ export default class UserProfile extends Component {
           <View style={styles.containereditfield}>
             <View style={{marginTop:10,marginBottom:10,width:width/1.2}}>
               <TextInput
+                onChangeText={text => this.setState({city:text})}
+                placeholder='City' style={styles.txtMenu}/>
+              <TextInput
+                onChangeText={text => this.setState({address:text})}
                 placeholder='Address' style={styles.txtMenu}/>
               <TextInput
+                onChangeText={number => {
+                  this.setState({phone:number})
+                }}
                 placeholder='Phone Number' maxLength = {13} keyboardType='numeric' style={styles.txtMenu}/>
             </View>
           </View>
 
       </Content>
       <Button
-        onPress={() => {this.props.navigator.popN(1)}}
+        onPress={()=>{
+          this.updateProfile()
+          this.props.navigator.push({title:'UserProfileScene'})
+
+          // setTimeout(() => {this.props.navigator.push(1)}, 1500)
+
+        }}
         style={{width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
         <Text style={{color:'#FFFFFF', fontSize:height/35}}>
           UPDATE

@@ -24,7 +24,7 @@ import { RNS3 } from 'react-native-aws3';
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
-import config from '../config.json'
+import config from '../config'
 
 class PostingFood extends Component {
   constructor(props){
