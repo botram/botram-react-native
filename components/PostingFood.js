@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { fetchTimeline } from '../action/food_action'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import {
   Button, Spinner
 } from 'native-base';
@@ -20,10 +24,13 @@ import { RNS3 } from 'react-native-aws3';
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
-export default class PostingFood extends Component {
+import config from '../config'
+
+class PostingFood extends Component {
   constructor(props){
     super(props)
     this.state={
+      'foodId':'',
       'title':'',
       'price':'',
       'quantity':'',
@@ -35,15 +42,16 @@ export default class PostingFood extends Component {
     }
   }
 
+
   postFood(cbUpload, cbRedirect) {
     const self = this
     self.setState({
       submitLoading: true,
     });
     AsyncStorage.getItem('userId').then(userId => {
-        AsyncStorage.getItem('token').then(token => {
-      this.setState({userId: userId})
-      fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
+      AsyncStorage.getItem('token').then(token => {
+        
+      fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -59,50 +67,62 @@ export default class PostingFood extends Component {
           food_tags: self.state.tags,
           _userId: userId
         })
-      }).then(res => res.json()).then(data => {
-        cbUpload(cbRedirect, self)
-        cbRedirect()
+      }).then(res => res.json())
+        .then(data => {
+          console.log(data._id);
+          self.setState({userId: data._id})
+          console.log(self.state.userId);
+          setTimeout(() => cbUpload(self, data._id), 2000)
+          cbRedirect()
+        })
       })
-    })
     })
   }
 
-    upload(cbRedirect, self) {
+    upload(self, foodId) {
+      console.log(self.props);
+      console.log('MASUK UPLOAD DEPAN');
+      console.log(foodId);
       const file = {
         uri: self.props.pathUri,
         name: 'food' + Date.now() + '.jpg',
         type: 'image/jpeg'
       };
-      self.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram/foods/food' + Date.now() + '.jpg'})
+      self.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram-bucket/foods/food' + Date.now() + '.jpg'})
+      console.log(foodId);
+      console.log('MASUK UPLOAD BELAKANG');
+      console.log(self.state.pic);
       const options = {
-        keyPrefix: 'foods/',
-        bucket: 'botram',
-        region: 'ap-southeast-1',
-        accessKey: 'AKIAJYWMHRSF565RIIYQ',
-        secretKey: '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',
+        keyPrefix: config.KEYPREFIX,
+        bucket: config.BUCKET,
+        region: config.REGION,
+        accessKey: config.ACCESSKEY,
+        secretKey: config.SECRETKEY,
         successActionStatus: 201
       };
       RNS3.put(file, options).then(response => {
         if (response.status !== 201) {
           throw new Error('Failed to upload image to S3', response);
         }
-        console.log('*** BODY ***', response.body);
-      })
-        .catch(err => console.error(err));
-    }
 
-  // componentDidMount() {
-    // AsyncStorage.getItem("myKey").then((value) => {
-    //   this.setState({"myKey": value});
-    // }).done();
-  // }
-  //
-  // saveData(value) {
-  //   AsyncStorage.setItem("myKey", value);
-  //   this.setState({"myKey": value});
-  //   console.log(AsyncStorage);
-  //   console.log(this.state.myKey);
-  // }
+          AsyncStorage.getItem('token').then(token => {
+            fetch(`http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food/edit`, {
+              method: 'PUT',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'token': token
+              },
+              body: JSON.stringify({
+                _foodId: foodId,
+                food_pic: self.state.pic
+              })
+            }).then(res => { res.json(); self.props.fetchTimeline(token) })
+        })
+
+      })
+        .catch(err => console.log(err));
+    }
 
     render() {
       return (
@@ -155,6 +175,12 @@ export default class PostingFood extends Component {
       );
     }
 }
+
+const mapsDispatchToProps = dispatch => {
+  return bindActionCreators({fetchTimeline}, dispatch)
+}
+
+export default connect(null, mapsDispatchToProps)(PostingFood)
 
 var styles = StyleSheet.create({
   container: {

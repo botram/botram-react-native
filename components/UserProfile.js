@@ -46,7 +46,7 @@ export default class UserProfile extends Component {
         this.setState({
           user:data
         })
-        fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/${data}`,{
+        fetch(`http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/${data}`,{
           method: 'GET',
           headers: {
             token: token
