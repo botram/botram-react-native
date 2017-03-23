@@ -27,7 +27,6 @@ export default class Botram extends Component {
 
               const responseInfoCallback = (error, result) => {
                 if (error) {
-                  console.log(error)
                   alert('Error fetching data: ' + error.toString());
                 } else {
                   const self = this;
@@ -37,22 +36,17 @@ export default class Botram extends Component {
                     pic: result.picture.data.url,
                     id_fb: result.id
                   }
-                  fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users', {
+                  fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users', {
                     method: 'POST',
-                    headers: {
-                      'Accept': 'application/json',
-                      'Content-Type': 'application/json',
-                    },
                     body: JSON.stringify(user)
-                  }).then((response) => {
-                    return response.json()
-                  }).then(data => {
-                    console.log(data);
-                    AsyncStorage.setItem("token", data.token)
-                    AsyncStorage.setItem("userId", data.userId)
-                    self.goToHomeScene()
-                  })
-                  .catch(err => console.log(err))
+                  }).then(response => response.json())
+                    .then(data => {
+                      console.log('pengennya sih dapet token');
+                      console.log(data.token);
+                      AsyncStorage.setItem("token", data.token)
+                      AsyncStorage.setItem("userId", data.userId)
+                      self.goToHomeScene()
+                  }).catch(err => console.log(err))
                 }
               }
 
@@ -71,7 +65,7 @@ export default class Botram extends Component {
 
               new GraphRequestManager().addRequest(infoRequest).start()
             }
-          )
+          ).catch(err => console.log(err))
         }
       }
       }

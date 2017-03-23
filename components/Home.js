@@ -45,7 +45,7 @@ export default class Home extends Component {
       if(!token) {
         this.props.navigator.resetTo({title:'LoginScene'});
       } else {
-        fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
+        fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
           method: 'GET',
           headers: {
             token: token
@@ -56,10 +56,10 @@ export default class Home extends Component {
         })
         .then(data => {
           this.setState ({foodList: data })
-        })
+        }).catch(err => console.log(err))
       }
     })
-    .catch(err => console.log(err))
+
   }
 
   componentWillReceiveProps(nextProps) {

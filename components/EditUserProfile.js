@@ -42,7 +42,7 @@ export default class EditUserProfile extends Component {
   componentDidMount() {
     AsyncStorage.getItem('userId').then(userId => {
       AsyncStorage.getItem('token').then(token => {
-        const link = `http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/${userId}`
+        const link = `http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/${userId}`
         fetch(link, {
           method: 'GET',
           headers: {
@@ -62,7 +62,7 @@ export default class EditUserProfile extends Component {
   updateProfile(){
     AsyncStorage.getItem('userId').then(userId => {
       AsyncStorage.getItem('token').then(token => {
-        const link = `http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/${userId}`
+        const link = `http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/${userId}`
         fetch(link, {
           method: 'PUT',
           headers: {

@@ -14,7 +14,6 @@ import NotificationScene from './components/Notification'
 import YourFoodsScene from './components/YourFoods';
 import EditUserProfile from './components/EditUserProfile';
 
-
 import {
   AppRegistry,
   Navigator,

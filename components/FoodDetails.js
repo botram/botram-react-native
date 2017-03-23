@@ -40,9 +40,8 @@ export default class FoodDetails extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.props.foodId);
     AsyncStorage.getItem('token').then(token => {
-      const consol = `http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food/${this.props.foodId}`;
+      const consol = `http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food/${this.props.foodId}`;
       fetch(consol, {
         method: 'GET',
         headers: {
@@ -63,6 +62,7 @@ export default class FoodDetails extends Component {
           food_desc: data.food_desc,
           food_tags: data.food_tags,
         })
+        .catch(err => console.log(err))
         console.log(this.state.userName);
       })
     })

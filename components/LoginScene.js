@@ -29,7 +29,7 @@ export default class CarouselExample extends Component {
       if(token) {
         this.props.navigator.resetTo({title:'HomeScene'});
       }
-    });
+    })
   }
 
   componentWillReceiveProps() {
@@ -37,7 +37,7 @@ export default class CarouselExample extends Component {
       if(token) {
         this.props.navigator.resetTo({title:'HomeScene'});
       }
-    });
+    })
   }
 
  _onLayoutDidChange = (e) => {
@@ -66,30 +66,30 @@ export default class CarouselExample extends Component {
             style={{flex: 1, width:'100%', height:'100%'}}
             source={require('../images/3.jpg')}
           />
-        </Carousel>
+      </Carousel>
 
-        <View style={{width: width, height: height, backgroundColor: 'rgba(0, 0, 0, .5)', position: 'absolute'}} />
-        <Image
-          source={require('../images/logo.png')}
-          style={{
-            position:'absolute',
-            width: 200,
-            height: 51.5,
-            bottom: width,
-            flexDirection: 'row'
-          }}
-        />
-        <View style={{
-          position: 'absolute',
-          width: width,
-          bottom: width/3,
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-            }}>
-          <FbButton navigator={this.props.navigator}/>
-        </View>
+      <View style={{width: width, height: height, backgroundColor: 'rgba(0, 0, 0, .5)', position: 'absolute'}} />
+      <Image
+        source={require('../images/logo.png')}
+        style={{
+          position:'absolute',
+          width: 200,
+          height: 51.5,
+          bottom: width,
+          flexDirection: 'row'
+        }}
+      />
+      <View style={{
+        position: 'absolute',
+        width: width,
+        bottom: width/3,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+          }}>
+        <FbButton navigator={this.props.navigator}/>
       </View>
-    );
+    </View>
+  );
   }
 }
