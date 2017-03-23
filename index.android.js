@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import store from './store'
 
 import HomeScene from './components/Home';
 import FavoritesScene from './components/Favorites';
@@ -89,12 +91,14 @@ export default class Botram extends Component {
   render() {
     const appThis = this;
     return (
-      <Navigator
-        initialRoute={{title: 'HomeScene' }}
-        renderScene={appThis.renderNewScene}
-        configureScene={(route, routeStack) =>
-          Navigator.SceneConfigs.FadeAndroid}
-      />
+      <Provider store={store}>
+        <Navigator
+          initialRoute={{title: 'HomeScene' }}
+          renderScene={appThis.renderNewScene}
+          configureScene={(route, routeStack) =>
+            Navigator.SceneConfigs.FadeAndroid}
+        />
+      </Provider>
     );
   }
 }
