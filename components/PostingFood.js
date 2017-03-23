@@ -35,74 +35,73 @@ export default class PostingFood extends Component {
     }
   }
 
-  postFood(cbUpload, cbRedirect) {
-    const self = this
-    self.setState({
-      submitLoading: true,
-    });
-    AsyncStorage.getItem('userId').then(userId => {
-        AsyncStorage.getItem('token').then(token => {
-      this.setState({userId: userId})
-      fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'token': token
-        },
-        body: JSON.stringify({
-          food_title: self.state.title,
-          food_pic: self.state.pic,
-          food_price: self.state.price,
-          food_qty: self.state.quantity,
-          food_desc: self.state.description,
-          food_tags: self.state.tags,
-          _userId: userId
-        })
-      }).then(res => res.json()).then(data => {
-        cbUpload(cbRedirect, self)
-        cbRedirect()
-      }).catch(err => console.log(err))
+  upload(cbRedirect, self) {
+    const file = {
+      uri: self.props.pathUri,
+      name: 'food' + Date.now() + '.jpg',
+      type: 'image/jpeg'
+    };
+    self.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram/foods/food' + Date.now() + '.jpg'})
+    const options = {
+      keyPrefix: 'foods/',
+      bucket: 'botram',
+      region: 'ap-southeast-1',
+      accessKey: 'AKIAJYWMHRSF565RIIYQ',
+      secretKey: '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',
+      successActionStatus: 201
+    };
+    RNS3.put(file, options).then(response => {
+      if (response.status !== 201) {
+        throw new Error('Failed to upload image to S3', response);
+      }
+      console.log('*** BODY ***', response.body);
     })
-    })
+      .catch(err => console.error(err));
   }
 
-    upload(cbRedirect, self) {
-      const file = {
-        uri: self.props.pathUri,
-        name: 'food' + Date.now() + '.jpg',
-        type: 'image/jpeg'
-      };
-      self.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram/foods/food' + Date.now() + '.jpg'})
-      const options = {
-        keyPrefix: 'foods/',
-        bucket: 'botram',
-        region: 'ap-southeast-1',
-        accessKey: 'AKIAJYWMHRSF565RIIYQ',
-        secretKey: '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',
-        successActionStatus: 201
-      };
-      RNS3.put(file, options).then(response => {
-        if (response.status !== 201) {
-          throw new Error('Failed to upload image to S3', response);
-        }
-        console.log('*** BODY ***', response.body);
-      })
-        .catch(err => console.error(err));
+  uploadAndPost(){
+    const file = {
+      uri: this.props.pathUri,
+      name: Date.now() + '.jpg',
+      type: 'image/jpeg'
     }
-
-  // componentDidMount() {
-    // AsyncStorage.getItem("myKey").then((value) => {
-    //   this.setState({"myKey": value});
-    // }).done();
-  // }
-  //
-  // saveData(value) {
-  //   AsyncStorage.setItem("myKey", value);
-  //   this.setState({"myKey": value});
-  //   console.log(AsyncStorage);
-  //   console.log(this.state.myKey);
-  // }
+    this.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram-bucket/foods/' + Date.now() + '.jpg'})
+    const options = {
+      keyPrefix: 'foods/',
+      bucket: 'botram-bucket',
+      region: 'ap-southeast-1',
+      accessKey: 'AKIAIHRYLQU6YB3ZDT5A',
+      secretKey: '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',
+      successActionStatus: 201
+    }
+    RNS3.put(file, options).then(response => {
+      if (response.status !== 201) {
+        throw new Error('Failed to upload image to S3', response)
+      }
+    }).then(() => {
+      AsyncStorage.getItem('token').then(token => {
+        AsyncStorage.getItem('userId').then(userId => {
+          fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'token': token
+            },
+            body: JSON.stringify({
+              food_title: this.state.title,
+              food_pic: self.state.pic,
+              food_price: this.state.price,
+              food_qty: this.state.quantity,
+              food_desc: this.state.description,
+              food_tags: this.state.tags,
+              _userId: userId
+            })
+          }).then(res => res.json())
+          .then(err => console.log(err))
+        })
+      })
+    }).catch(err => console.error(err))
+  }
 
     render() {
       return (
@@ -142,14 +141,9 @@ export default class PostingFood extends Component {
               </View>
             </ScrollView>
           </View>
-            <Button onPress={
-                ()=> {
-                  // this.upload(this.postFood, () => this.props.navigator.resetTo({title:'HomeScene'}))
-                  this.postFood(this.upload, () => this.props.navigator.resetTo({title:'HomeScene'}))
-                }
-              } style={{ width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
-              {!this.state.submitLoading ? <Text style={{color:'#FFFFFF',fontSize:height/35}}>SUBMIT</Text> : <Spinner color='white' />}
-
+            <Button
+              onPress={this.uploadAndPost()}
+              style={{ width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
             </Button>
         </View>
       );
