@@ -24,6 +24,8 @@ import { RNS3 } from 'react-native-aws3';
 var {width, height} = require('Dimensions').get('window');
 const iconmenu = (<Icon name="chevron-left" size={30} color="#FFFFFF" />)
 
+import config from '../config.json'
+
 class PostingFood extends Component {
   constructor(props){
     super(props)
@@ -58,7 +60,7 @@ class PostingFood extends Component {
     AsyncStorage.getItem('userId').then(userId => {
       AsyncStorage.getItem('token').then(token => {
         // this.props.postFood(token, userId, self, cbUpload, cbRedirect)
-      fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
+      fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -96,16 +98,16 @@ class PostingFood extends Component {
         name: 'food' + Date.now() + '.jpg',
         type: 'image/jpeg'
       };
-      self.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram/foods/food' + Date.now() + '.jpg'})
+      self.setState({pic:'https://s3-ap-southeast-1.amazonaws.com/botram-bucket/foods/food' + Date.now() + '.jpg'})
       console.log(foodId);
       console.log('MASUK UPLOAD BELAKANG');
       console.log(self.state.pic);
       const options = {
-        keyPrefix: 'foods/',
-        bucket: 'botram',
-        region: 'ap-southeast-1',
-        accessKey: 'AKIAJYWMHRSF565RIIYQ',
-        secretKey: '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',
+        keyPrefix: config.KEYPREFIX,
+        bucket: config.BUCKET,
+        region: config.REGION,
+        accessKey: config.ACCESSKEY,
+        secretKey: config.SECRETKEY,
         successActionStatus: 201
       };
       RNS3.put(file, options).then(response => {
@@ -115,7 +117,7 @@ class PostingFood extends Component {
         // console.log('*** BODY ***', response.body);
         // console.log(response);
           AsyncStorage.getItem('token').then(token => {
-            fetch(`http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food/edit`, {
+            fetch(`http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food/edit`, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
@@ -129,7 +131,7 @@ class PostingFood extends Component {
             }).then(res => { res.json(); self.props.fetchTimeline(token) })
         })
       })
-        .catch(err => console.error(err));
+        .catch(err => console.log(err));
     }
 
   // componentDidMount() {

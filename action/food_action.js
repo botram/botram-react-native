@@ -9,7 +9,7 @@ export const fetchTimelineSuccess = (foods) => {
 export const fetchTimeline = (token) =>{
   console.log('jalan timeline gak yaa');
   return(dispatch) => {
-        fetch('http://botram-api-production.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
+        fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
           method: 'GET',
           headers: {
             token: token
