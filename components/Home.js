@@ -86,49 +86,47 @@ class Home extends Component {
         }
       })
         return (
-            <Drawer
-              ref={(ref) => { this._drawer = ref; }}
-              content={<SideBar navigator={this._navigator} nav={this.props.navigator} />}
-              onClose={() => this.closeDrawer()}
-              style={{width:100}}
-            >
-
-              <Row style={{height: 50,backgroundColor:'#B71C1C',}}>
-               <Col size={35}>
-                 <TouchableOpacity  onPress={() => {this.openDrawer()}}>
-                   <Text style={{padding:10,}}>{iconmenu}</Text>
-                 </TouchableOpacity>
-               </Col>
-               <Col size={65}><Text style={{padding:10,color: '#FFFFFF',fontSize:22, }}>Botram</Text></Col>
-              </Row>
-              <Container>
-                <View style={styles.container}>
-                  <FoodItemCard navigator={this.props.navigator} data={this.props.foodList}/>
-                </View>
-
-                <Footer >
-                  <FooterTab style={{backgroundColor:'#ECECEC',}}>
-                    <Button onPress={() => {
-                      this.props.navigator.push({title:'FavoritesScene'})
-                    }}>
-                      {iconfav}
-                    </Button>
-                    <Button >
-                      {iconhome}
-                    </Button>
-                    <Button onPress={() => {
-                      this.props.navigator.push({title:'SearchScene'})
-                    }}>
-                    {iconSearch}
-                    </Button>
-                    <Button onPress={() => {
-                      this.props.navigator.push({title:'CameraScene'})
-                    }}>
-                      {iconcamera}
-                    </Button>
-                  </FooterTab>
-                </Footer>
-              </Container>
+          <Drawer
+            ref={(ref) => { this._drawer = ref; }}
+            content={<SideBar navigator={this._navigator} nav={this.props.navigator} />}
+            onClose={() => this.closeDrawer()}
+            style={{width:100}}
+          >
+            <Row style={{height: 50,backgroundColor:'#B71C1C',}}>
+             <Col size={35}>
+               <TouchableOpacity  onPress={() => {this.openDrawer()}}>
+                 <Text style={{padding:10,}}>{iconmenu}</Text>
+               </TouchableOpacity>
+             </Col>
+             <Col size={65}><Text style={{padding:10,color: '#FFFFFF',fontSize:22, }}>Botram</Text></Col>
+            </Row>
+            <Container>
+              <View style={styles.container}>
+                <FoodItemCard navigator={this.props.navigator} data={this.props.foodList}/>
+              </View>
+              <Footer >
+                <FooterTab style={{backgroundColor:'#ECECEC',}}>
+                  <Button onPress={() => {
+                    this.props.navigator.push({title:'FavoritesScene'})
+                  }}>
+                    {iconfav}
+                  </Button>
+                  <Button >
+                    {iconhome}
+                  </Button>
+                  <Button onPress={() => {
+                    this.props.navigator.push({title:'SearchScene'})
+                  }}>
+                  {iconSearch}
+                  </Button>
+                  <Button onPress={() => {
+                    this.props.navigator.push({title:'CameraScene'})
+                  }}>
+                    {iconcamera}
+                  </Button>
+                </FooterTab>
+              </Footer>
+            </Container>
           </Drawer>
         );
     }
@@ -153,15 +151,5 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-  },
-  judul: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
