@@ -7,6 +7,7 @@ import thumb from '../../dummyFiles/thumb.jpg'
 import Pic from '../../dummyFiles/image.jpg'
 import thumb2 from '../../dummyFiles/thumb2.jpg'
 import Pic2 from '../../dummyFiles/image2.jpg'
+import san from 'san-money'
 
 var {width, height} = require('Dimensions').get('window');
 
@@ -51,7 +52,7 @@ export default class FoodItemCard extends Component {
                               {data.food_title}
                             </Text>
                           </Col>
-                          <Col size={23}><Text style={{color: '#282828'}}>Rp {data.food_price}</Text></Col>
+                          <Col size={23}><Text style={{color: '#282828'}}>{san.money(data.food_price,"IDR. ")}</Text></Col>
                          </Row>
                          <Row>
                           <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Qty : {data.food_qty} pcs</Text></Col>
