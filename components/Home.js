@@ -46,26 +46,9 @@ class Home extends Component {
       if(!token) {
         this.props.navigator.resetTo({title:'LoginScene'});
       } else {
-// <<<<<<< HEAD
         this.props.fetchTimeline(token)
         }
-// =======
-      //   fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
-      //     method: 'GET',
-      //     headers: {
-      //       token: token
-      //     }
-      //   })
-      //   .then(res => {
-      //     return res.json()
-      //   })
-      //   .then(data => {
-      //     this.setState ({foodList: data })
-      //   }).catch(err => console.log(err))
-      // }
-// >>>>>>> 04b7dc4ffc4685e606d9f4c3eeaf98a07935ae94
     })
-
   }
 
   componentWillReceiveProps(nextProps) {

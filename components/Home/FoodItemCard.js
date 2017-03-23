@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, ScrollView,  } from 'react-native';
-import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Button, Right, Spinner } from 'native-base'
+import { Container, Content, Card,  CardItem, Left, Body, Thumbnail, Button, Right, Spinner } from 'native-base'
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import thumb from '../../dummyFiles/thumb.jpg'

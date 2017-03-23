@@ -41,16 +41,7 @@ class PostingFood extends Component {
       'submitLoading': false,
     }
   }
-  //
-  // componentDidMount(){
-  //   AsyncStorage.getItem("token").then(token => {
-  //     if(!token) {
-  //       this.props.navigator.resetTo({title:'LoginScene'});
-  //     } else {
-  //       }
-  //   })
-  //   .catch(err => console.log(err))
-  // }
+
 
   postFood(cbUpload, cbRedirect) {
     const self = this
@@ -59,7 +50,7 @@ class PostingFood extends Component {
     });
     AsyncStorage.getItem('userId').then(userId => {
       AsyncStorage.getItem('token').then(token => {
-        // this.props.postFood(token, userId, self, cbUpload, cbRedirect)
+        
       fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
         method: 'POST',
         headers: {
@@ -113,8 +104,7 @@ class PostingFood extends Component {
         if (response.status !== 201) {
           throw new Error('Failed to upload image to S3', response);
         }
-        // console.log('*** BODY ***', response.body);
-        // console.log(response);
+
           AsyncStorage.getItem('token').then(token => {
             fetch(`http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food/edit`, {
               method: 'PUT',
@@ -129,6 +119,7 @@ class PostingFood extends Component {
               })
             }).then(res => { res.json(); self.props.fetchTimeline(token) })
         })
+
       })
         .catch(err => console.log(err));
     }
