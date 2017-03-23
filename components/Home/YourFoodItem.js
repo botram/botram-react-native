@@ -34,29 +34,31 @@ export default class FoodItemCard extends Component {
           })
           .then(data => {
             this.setState ({myfood: data })
+
           }).catch(err => console.log(err))
         }
       })
     })
   }
 
-  handleStatus(){
-    if (this.state.showhide==='Hide') {
-      this.setState({
-        showhide : 'Show',
-        activePicture : 0.3,
-        status : 'Not Available',
-      })
-    }
-    else {
-      this.setState({
-        showhide : 'Hide',
-        activePicture :1,
-        status : 'Available',
-      })
-    }
+  // handleStatus(){
+  //   if (this.state.showhide==='Hide') {
+  //     this.setState({
+  //       showhide : 'Show',
+  //       activePicture : 0.3,
+  //       status : 'Not Available',
+  //     })
+  //   }
+  //   else {
+  //     this.setState({
+  //       showhide : 'Hide',
+  //       activePicture :1,
+  //       status : 'Available',
+  //     })
+  //   }
+  //
+  // }
 
-  }
   render(){
     console.log(this.state.myfood);
     return(
@@ -64,6 +66,7 @@ export default class FoodItemCard extends Component {
         <ScrollView>
           {this.state.myfood.map((data,index) => {
             return (<Content key={index}>
+
             <Card>
               <CardItem cardBody>
                 <Image style={{ opacity:this.state.activePicture, backgroundColor: '#000000', resizeMode: 'cover', width: width, height: height/3 }} source={{uri:data.food_pic}}/>
@@ -75,7 +78,7 @@ export default class FoodItemCard extends Component {
                   <Col size={23}><Text style={{color: '#282828'}}>Rp {data.food_price}</Text></Col>
                   </Row>
                   <Row>
-                  <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Stok : {data.food_qty} Porsi</Text></Col>
+                  <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Stock : {data.food_qty} Pcs</Text></Col>
                   <Col size={23}>
                     <Button
                       onPress={() => Alert.alert(
@@ -83,7 +86,20 @@ export default class FoodItemCard extends Component {
                         'Are you sure to delete this item?',
                         [
                           {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-                          {text: 'OK', onPress: () => console.log('OK Pressed!')},
+                          {text: 'OK', onPress: () =>{
+                            console.log('delettttt');
+                              AsyncStorage.getItem('token').then(token => {
+                                fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food',{
+                                  method: 'DELETE',
+                                  headers: {
+                                    token: token
+                                  },
+                                  body: JSON.stringify({_foodId: data._id})
+                                }).then(res => console.log(res))
+                                .catch(err => console.log(err))
+                              })
+                            }
+                          },
                         ]
                       )}
                       style={{justifyContent:'center',width: width/5, height: height/25, backgroundColor: '#D50000'}}>
@@ -92,7 +108,7 @@ export default class FoodItemCard extends Component {
                    </Col>
                   </Row>
                   <Row style={{marginTop:5}}>
-                  <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Status : {this.state.status}</Text></Col>
+                  <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Status : {data.status === 1 ? 'Available' : 'Not Available'}</Text></Col>
                   <Col size={23}>
                     <Button
                       onPress={() =>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, ScrollView,  } from 'react-native';
-import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Button, Right, Spinner } from 'native-base'
+import { Container, Content, Card,  CardItem, Left, Body, Thumbnail, Button, Right, Spinner } from 'native-base'
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import thumb from '../../dummyFiles/thumb.jpg'
@@ -23,6 +23,7 @@ export default class FoodItemCard extends Component {
       <Container>
         <ScrollView>
           {this.props.data.map((data, index) => {
+            console.log(data.food_pic);
             return(
               <Content key={index}>
                   <Card>
