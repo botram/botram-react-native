@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
-import {
-  View,
-  BackAndroid,
-  StyleSheet,
-  Dimensions,
-  Image,
-  Text,
-  TouchableOpacity
-} from 'react-native';
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, BackAndroid, StyleSheet, Dimensions, Image, Text, TouchableOpacity } from 'react-native';
 
 var {width, height} = require('Dimensions').get('window');
 

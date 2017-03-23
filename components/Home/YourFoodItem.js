@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView, Alert, AsyncStorage, } from 'react-native';
-import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Button, Right } from 'native-base'
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { View, Text, Image, ScrollView, Alert, AsyncStorage, } from 'react-native';
+import { Container, Content, Card, CardItem, Left, Body, Thumbnail, Button, Right } from 'native-base'
 
 var {width, height} = require('Dimensions').get('window');
 
@@ -33,32 +33,29 @@ export default class FoodItemCard extends Component {
             return res.json()
           })
           .then(data => {
-            console.log(data);
             this.setState ({myfood: data })
-
           }).catch(err => console.log(err))
         }
       })
     })
   }
 
-  // handleStatus(){
-  //   if (this.state.showhide==='Hide') {
-  //     this.setState({
-  //       showhide : 'Show',
-  //       activePicture : 0.3,
-  //       status : 'Not Available',
-  //     })
-  //   }
-  //   else {
-  //     this.setState({
-  //       showhide : 'Hide',
-  //       activePicture :1,
-  //       status : 'Available',
-  //     })
-  //   }
-  //
-  // }
+  handleStatus(){
+    if (this.state.showhide==='Hide') {
+      this.setState({
+        showhide : 'Show',
+        activePicture : 0.3,
+        status : 'Not Available',
+      })
+    }
+    else {
+      this.setState({
+        showhide : 'Hide',
+        activePicture :1,
+        status : 'Available',
+      })
+    }
+  }
 
   render(){
     return(
@@ -66,7 +63,6 @@ export default class FoodItemCard extends Component {
         <ScrollView>
           {this.state.myfood.map((data,index) => {
             return (<Content key={index}>
-
             <Card>
               <CardItem cardBody>
                 <Image style={{ opacity:this.state.activePicture, backgroundColor: '#000000', resizeMode: 'cover', width: width, height: height/3 }} source={{uri:data.food_pic}}/>
@@ -88,7 +84,6 @@ export default class FoodItemCard extends Component {
                           {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
                           {text: 'OK', onPress: () =>{
                               const food = JSON.stringify({_foodId: data._id})
-
                               AsyncStorage.getItem('token').then(token => {
                                 fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food',{
                                   method: 'DELETE',
@@ -138,11 +133,9 @@ export default class FoodItemCard extends Component {
               </CardItem>
             </Card>
           </Content>)
-
           })}
-
         </ScrollView>
       </Container>
-        );
+      );
     }
 }

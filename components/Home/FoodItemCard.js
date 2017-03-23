@@ -1,22 +1,7 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ScrollView
-} from 'react-native';
-import {
-  Container,
-  Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Button } from 'native-base'
-import {
-  Col,
-  Row,
-  Grid
-} from "react-native-easy-grid";
+import { View, Text, Image, ScrollView } from 'react-native';
+import { Container, Content, Card, CardItem, Thumbnail, Button } from 'native-base'
+import { Col, Row, Grid } from "react-native-easy-grid";
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 var {width, height} = require('Dimensions').get('window');

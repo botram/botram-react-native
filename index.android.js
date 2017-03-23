@@ -5,7 +5,6 @@ import store from './store'
 import HomeScene from './components/Home';
 import FavoritesScene from './components/Favorites';
 import LoginScene from './components/LoginScene';
-import PreCameraScene from './components/PreCamera';
 import UserProfileScene from './components/UserProfile'
 import CameraScene from './components/Camera'
 import FoodDetails from './components/FoodDetails'
@@ -38,11 +37,6 @@ export default class Botram extends Component {
     else if (route.title === 'FavoritesScene') {
       return (
         <FavoritesScene route={route} navigator={navigator} />
-      )
-    }
-    else if (route.title === 'PreCameraScene') {
-      return (
-        <PreCameraScene route={route} navigator={navigator}/>
       )
     }
     else if (route.title === 'CameraScene'){

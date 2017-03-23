@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FBSDK, { GraphRequest, GraphRequestManager, LoginManager, LoginButton, AccessToken } from 'react-native-fbsdk';
 import { View, AsyncStorage } from 'react-native';
+import FBSDK, { GraphRequest, GraphRequestManager, LoginManager, LoginButton, AccessToken } from 'react-native-fbsdk';
 
 export default class Botram extends Component {
 

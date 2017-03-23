@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Text, View, Image, StyleSheet, AsyncStorage, TouchableOpacity } from 'react-native';
+
+var {width, height} = require('Dimensions').get('window')
 const iconperson = (<Icon name="person" size={20} color="#616161" />)
 const iconlogout = (<Icon name="power-settings-new" size={20} color="#616161" />)
 const iconfood = (<Icon name="restaurant" size={20} color="#616161" />)
-var {width, height} = require('Dimensions').get('window')
-
 export default class MenuDrawer extends Component {
   constructor(){
     super()

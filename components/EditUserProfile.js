@@ -1,31 +1,10 @@
 import React, { Component } from 'react';
-import {
-  Container,
-  Content,
-  Button,
-  Footer
-} from 'native-base';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  AsyncStorage,
-  TouchableOpacity,
-} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
-
-
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import FoodItemCard from './Home/FoodItemCard'
+import { Container, Content, Button, ooter } from 'native-base';
+import { StyleSheet, Text, View, Image, TextInput, AsyncStorage, TouchableOpacity, } from 'react-native';
 
 var {width, height} = require('Dimensions').get('window');
-
-const iconhome = (<Icon name="home" size={30} color="#b71c1c" />)
-const iconcamera = (<Icon name="photo-camera" size={30} color="#6C7A89" />)
-const iconfav = (<Icon name="favorite" size={30} color="#6C7A89" />)
 const iconBack = (<Icon name="navigate-before" size={30} color="#FFFFFF" style={{padding:10}}/>)
 
 export default class EditUserProfile extends Component {
@@ -33,7 +12,7 @@ export default class EditUserProfile extends Component {
     super()
     this.state = {
       name : '',
-      profilepicture: '',
+      profilepicture: 'ava.jpg',
       address: '',
       city: '',
       phone: ''
@@ -104,7 +83,6 @@ export default class EditUserProfile extends Component {
             <Text style={{marginTop: height/30, fontSize: height/21, color: '#bf4d4d'}}>
               {this.state.name}
             </Text>
-            <Text style={{color:'#6C7A89', marginTop: width/45, fontSize: width/25}}>4/5 <Icon name="star" style={{fontSize: width/25}}/></Text>
           </View>
 
           <View style={styles.containereditfield}>
@@ -128,9 +106,6 @@ export default class EditUserProfile extends Component {
         onPress={()=>{
           this.updateProfile()
           this.props.navigator.push({title:'UserProfileScene'})
-
-          // setTimeout(() => {this.props.navigator.push(1)}, 1500)
-
         }}
         style={{width:width, alignItems: 'center', justifyContent:'center',backgroundColor:'#00B16A'}}>
         <Text style={{color:'#FFFFFF', fontSize:height/35}}>
@@ -143,10 +118,6 @@ export default class EditUserProfile extends Component {
 }
 
 var styles = StyleSheet.create({
-  profile: {
-    flex: 1,
-    height:height,
-  },
   profileHead: {
     height:height/3.5,
     justifyContent: 'flex-start',
@@ -159,13 +130,6 @@ var styles = StyleSheet.create({
     marginRight: width/18,
     justifyContent: 'flex-start',
     alignItems: 'center',
-  },
-  profileDetail: {
-    height:height/3,
-    marginLeft: width/18,
-    marginRight: width/18,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
   },
   containereditfield: {
     alignItems: 'center',
