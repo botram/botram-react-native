@@ -24,7 +24,6 @@ export default class Botram extends Component {
             (data) => {
               this.goToHomeScene()
               let accessToken = data.accessToken
-
               const responseInfoCallback = (error, result) => {
                 if (error) {
                   alert('Error fetching data: ' + error.toString());
@@ -38,11 +37,12 @@ export default class Botram extends Component {
                   }
                   fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users', {
                     method: 'POST',
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
                     body: JSON.stringify(user)
                   }).then(response => response.json())
                     .then(data => {
-                      console.log('pengennya sih dapet token');
-                      console.log(data.token);
                       AsyncStorage.setItem("token", data.token)
                       AsyncStorage.setItem("userId", data.userId)
                       self.goToHomeScene()
