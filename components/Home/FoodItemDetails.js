@@ -19,7 +19,7 @@ export default class FoodItemDetails extends Component {
                   <Col size={20}><Thumbnail source={thumb} /></Col>
                   <Col size={65} style={{marginTop: width/40}}>
                     <Text style={{color:'#b71c1c', fontWeight: 'bold'}}>
-                      BU TINI
+                      {this.props.fooddata.name}
                     </Text>
                     <Text style={{fontSize: width/35, marginRight: width/80}}>Yogyakarta</Text>
                   </Col>
