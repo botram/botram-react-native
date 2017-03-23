@@ -36,6 +36,7 @@ export default class FoodDetails extends Component {
       name: '',
       food_pic: '',
       food_title: '',
+      food_tags: [],
     }
   }
 
@@ -50,11 +51,10 @@ export default class FoodDetails extends Component {
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         this.setState ({
           name: data._userId.name,
           pic: data._userId.pic,
-          rated: data._userId.rated,
+          rating: data._userId.rating,
           food_pic: data.food_pic,
           food_title: data.food_title,
           food_price: data.food_price,
@@ -62,9 +62,7 @@ export default class FoodDetails extends Component {
           food_desc: data.food_desc,
           food_tags: data.food_tags,
         })
-        .catch(err => console.log(err))
-        console.log(this.state.userName);
-      })
+      }).catch(err => console.log(err))
     })
   }
 
@@ -92,10 +90,10 @@ export default class FoodDetails extends Component {
                         <Text style={{color:'#b71c1c', fontWeight: 'bold'}}>
                           {this.state.name}
                         </Text>
-                        <Text style={{fontSize: width/35, marginRight: width/80}}>Bumi</Text>
+                        <Text style={{fontSize: width/35, marginRight: width/80}}>{this.state.city}</Text>
                       </Col>
                       <Col size={15}>
-                        <Text style={{color:'#6C7A89', marginTop: width/20, fontSize: width/27}}>{this.state.rated}/5 <Icon name="star" style={{fontSize: width/25}}/></Text>
+                        <Text style={{color:'#6C7A89', marginTop: width/20, fontSize: width/27}}>{this.state.rating}/5 <Icon name="star" style={{fontSize: width/25}}/></Text>
                       </Col>
                     </Grid>
                  </CardItem>
@@ -118,10 +116,9 @@ export default class FoodDetails extends Component {
                        <Text style={{color: '#282828', marginRight: width/100, fontSize: width/25, }}>{this.state.food_desc}</Text>
                      </Row>
                      <Row style={styles.rowoption}>
-                       <Text style={styles.tagtext}>#Nasi</Text>
-                       <Text style={styles.tagtext}>#Yogya</Text>
-                       <Text style={styles.tagtext}>#Enak</Text>
-                       <Text style={styles.tagtext}>#{this.state.food_tags}</Text>
+                       {this.state.food_tags.map((data,index) => {
+                         return <Text key={index} style={styles.tagtext}>#{data}</Text>
+                       })}
                      </Row>
                    </Grid>
                  </CardItem>
