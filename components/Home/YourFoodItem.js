@@ -33,6 +33,7 @@ export default class FoodItemCard extends Component {
             return res.json()
           })
           .then(data => {
+            console.log(data);
             this.setState ({myfood: data })
 
           }).catch(err => console.log(err))
@@ -86,14 +87,21 @@ export default class FoodItemCard extends Component {
                         [
                           {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
                           {text: 'OK', onPress: () =>{
+                              const food = JSON.stringify({_foodId: data._id})
+
                               AsyncStorage.getItem('token').then(token => {
                                 fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food',{
                                   method: 'DELETE',
                                   headers: {
                                     token: token
                                   },
-                                  body: JSON.stringify({_foodId: data._id})
-                                }).then(res => console.log(res))
+                                  body: food
+                                }).then(res => {
+                                    return res.json()
+                                })
+                                .then(data => {
+                                  console.log(data);
+                                })
                                 .catch(err => console.log(err))
                               })
                             }
