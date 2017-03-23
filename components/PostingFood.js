@@ -86,23 +86,9 @@ export default class PostingFood extends Component {
         if (response.status !== 201) {
           throw new Error('Failed to upload image to S3', response);
         }
-        console.log('*** BODY ***', response.body);
       })
         .catch(err => console.error(err));
     }
-
-  // componentDidMount() {
-    // AsyncStorage.getItem("myKey").then((value) => {
-    //   this.setState({"myKey": value});
-    // }).done();
-  // }
-  //
-  // saveData(value) {
-  //   AsyncStorage.setItem("myKey", value);
-  //   this.setState({"myKey": value});
-  //   console.log(AsyncStorage);
-  //   console.log(this.state.myKey);
-  // }
 
     render() {
       return (

@@ -60,7 +60,6 @@ export default class FoodItemCard extends Component {
   // }
 
   render(){
-    console.log(this.state.myfood);
     return(
       <Container>
         <ScrollView>
@@ -87,7 +86,6 @@ export default class FoodItemCard extends Component {
                         [
                           {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
                           {text: 'OK', onPress: () =>{
-                            console.log('delettttt');
                               AsyncStorage.getItem('token').then(token => {
                                 fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food',{
                                   method: 'DELETE',
