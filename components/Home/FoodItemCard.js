@@ -60,9 +60,11 @@ export default class FoodItemCard extends Component {
                                style={{width: width/5, height: height/25, backgroundColor: '#00B16A'}}
                                onPress={() => {
                                  this.setState({
-                                   foodId:data._id
-                                 })
-                               this.props.navigator.push( {title:'FoodDetails',foodId: this.state.foodId})
+                                   foodId : data._id,
+                                 });
+                                 setTimeout(() => {
+                                    this.props.navigator.push( {title:'FoodDetails',foodId: this.state.foodId})
+                                 }, 100)
 
                              }}>
                                <Text style={{color: '#FFFFFF'}}>Detail</Text>
