@@ -1,16 +1,8 @@
-import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  Dimensions,
-  Image,
-  AsyncStorage
-} from 'react-native';
-import {
-  H1,
-} from 'native-base';
+import { H1, } from 'native-base';
 import FbButton from './Login/FbButton'
+import React, { Component } from 'react';
 import Carousel from 'react-native-looped-carousel';
+import { Text, View, Dimensions, Image, AsyncStorage } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 

@@ -1,5 +1,4 @@
 export const fetchTimelineSuccess = (foods) => {
-  console.log('jalan timeline success gak yaa');
   return{
     type: 'FETCH_TIMELINE_FOODS',
     payload: foods
@@ -7,7 +6,6 @@ export const fetchTimelineSuccess = (foods) => {
 }
 
 export const fetchTimeline = (token) =>{
-  console.log('jalan timeline gak yaa');
   return(dispatch) => {
         fetch('http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/food', {
           method: 'GET',
@@ -49,7 +47,6 @@ export const postFood = (token, userId, componentState, cbUpload, cbRedirect) =>
         _userId: userId
       })
     }).then(res => res.json()).then(data => {
-      console.log('posting selesai' + componentState.state.title);
       dispatch(postFoodSuccess);
       cbUpload(componentState.state, componentState.state.foodId);
       setTimeout(() => cbUpload(componentState.state, userId), 2000)

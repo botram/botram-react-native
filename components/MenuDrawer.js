@@ -1,43 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-const iconnotif = (<Icon name="notifications" size={20} color="#616161" />)
+import { Text, View, Image, StyleSheet, AsyncStorage, TouchableOpacity } from 'react-native';
+
+var {width, height} = require('Dimensions').get('window')
 const iconperson = (<Icon name="person" size={20} color="#616161" />)
 const iconlogout = (<Icon name="power-settings-new" size={20} color="#616161" />)
 const iconfood = (<Icon name="restaurant" size={20} color="#616161" />)
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  TouchableOpacity,
-  AsyncStorage,
-} from 'react-native';
-import thumb from '../dummyFiles/thumb.jpg'
-var {width, height} = require('Dimensions').get('window');
-
 export default class MenuDrawer extends Component {
   constructor(){
     super()
     this.state = {
       user : '',
       name : '',
-      profilepicture : '../images/ava.png',
       token: '',
-      userid: ''
+      profilepicture : 'profilepicture.png',
     }
   }
   componentDidMount() {
-    // AsyncStorage.getItem('token').then(data => this.setState({token: data}))
-    // AsyncStorage.getItem('userId').then(data => this.setState({userId: data})
-
     AsyncStorage.getItem('userId').then(userId => {
       AsyncStorage.getItem('token').then(token => {
         fetch(`http://botram-api-dev.ap-southeast-1.elasticbeanstalk.com/api/users/${userId}`, {
@@ -54,7 +34,7 @@ export default class MenuDrawer extends Component {
           })
         }).catch(err => console.log(err))
       })
-    });
+    })
   }
   render() {
     return (
@@ -66,16 +46,6 @@ export default class MenuDrawer extends Component {
           </Text>
         </View>
         <View style={styles.listmenu}>
-          <Row style={{height: 45,justifyContent: 'center',paddingTop:10,}}>
-            <Col size={20}><Text style={styles.menuicon}>{iconnotif}</Text></Col>
-            <Col size={80}>
-              <TouchableOpacity onPress={() => {
-                this.props.nav.push({title:'NotificationScene'})
-              }}>
-              <Text style={styles.txtmenu}>Notifications</Text>
-              </TouchableOpacity>
-            </Col>
-          </Row>
           <Row style={{height: 45,justifyContent: 'center',paddingTop:10,}}>
             <Col size={20}><Text style={styles.menuicon}>{iconperson}</Text></Col>
             <Col size={80}>
@@ -89,7 +59,6 @@ export default class MenuDrawer extends Component {
           <Row style={{height: 45,justifyContent: 'center',paddingTop:10,}}>
             <Col size={20}><Text style={styles.menuicon}>{iconfood}</Text></Col>
             <Col size={80}>
-
               <TouchableOpacity onPress={() => {
                 this.props.nav.push({title:'YourFoodsScene'})
               }}>

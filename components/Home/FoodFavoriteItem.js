@@ -20,14 +20,11 @@ export default class FoodItemCard extends Component {
                  <CardItem style={{margin: -3}}>
                     <Grid>
                       <Col size={20}><Thumbnail source={thumb} /></Col>
-                    <Col size={65} style={{marginTop: width/40}}>
+                    <Col size={80} style={{marginTop: width/40}}>
                           <Text style={{color:'#b71c1c', fontWeight: 'bold'}}>
                             CIPUT
                           </Text>
                         <Text style={{fontSize: width/35, marginRight: width/80}}>Saturnus</Text>
-                      </Col>
-                      <Col size={15}>
-                        <Text style={{color:'#6C7A89', marginTop: width/20, fontSize: width/27}}>4/5 <Icon name="star" style={{fontSize: width/25}}/></Text>
                       </Col>
                     </Grid>
                  </CardItem>
@@ -41,7 +38,7 @@ export default class FoodItemCard extends Component {
                       <Col size={23}><Text style={{color: '#282828'}}>Rp 28.000</Text></Col>
                      </Row>
                      <Row>
-                      <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Stok : 25 Porsi</Text></Col>
+                      <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Qty : 25 Pcs</Text></Col>
                       <Col size={23}>
                          <Button style={{width: width/5, height: height/25, backgroundColor: '#00B16A'}} onPress={() => {
                            this.props.navigator.push({title:'FoodDetails'})
@@ -59,14 +56,11 @@ export default class FoodItemCard extends Component {
                  <CardItem style={{margin: -3}}>
                     <Grid>
                       <Col size={20}><Thumbnail source={thumb2} /></Col>
-                    <Col size={65} style={{marginTop: width/40}}>
+                    <Col size={80} style={{marginTop: width/40}}>
                           <Text style={{color:'#b71c1c', fontWeight: 'bold'}}>
                             DEER
                           </Text>
                         <Text style={{fontSize: width/35, marginRight: width/80}}>Amazon</Text>
-                      </Col>
-                      <Col size={15}>
-                        <Text style={{color:'#6C7A89', marginTop: width/20, fontSize: width/27}}>5/5 <Icon name="star" style={{fontSize: width/25}}/></Text>
                       </Col>
                     </Grid>
                  </CardItem>
@@ -80,7 +74,7 @@ export default class FoodItemCard extends Component {
                       <Col size={23}><Text style={{color: '#282828'}}>Rp 20.000</Text></Col>
                      </Row>
                      <Row>
-                      <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Stok : 12 Porsi</Text></Col>
+                      <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Qty : 12 Pcs</Text></Col>
                       <Col size={23}>
                          <Button style={{width: width/5, height: height/25, backgroundColor: '#00B16A'}}>
                            <Text style={{color: '#FFFFFF'}}>Detail</Text>

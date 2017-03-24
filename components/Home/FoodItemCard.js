@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView,  } from 'react-native';
-import { Container, Content, Card,  CardItem, Left, Body, Thumbnail, Button, Right, Spinner } from 'native-base'
+import { View, Text, Image, ScrollView } from 'react-native';
+import { Container, Content, Card, CardItem, Thumbnail, Button } from 'native-base'
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import thumb from '../../dummyFiles/thumb.jpg'
-import Pic from '../../dummyFiles/image.jpg'
-import thumb2 from '../../dummyFiles/thumb2.jpg'
-import Pic2 from '../../dummyFiles/image2.jpg'
 
 var {width, height} = require('Dimensions').get('window');
 
@@ -29,14 +25,11 @@ export default class FoodItemCard extends Component {
                      <CardItem style={{margin: -3}}>
                         <Grid>
                           <Col size={20}><Thumbnail source={{uri:data._userId.pic}} /></Col>
-                        <Col size={65} style={{marginTop: width/40}}>
-                              <Text style={{color:'#b71c1c', fontWeight: 'bold'}}>
-                                {data._userId.name}
-                              </Text>
+                          <Col size={80} style={{marginTop: width/40}}>
+                            <Text style={{color:'#b71c1c', fontWeight: 'bold'}}>
+                              {data._userId.name}
+                            </Text>
                             <Text style={{fontSize: width/35, marginRight: width/80}}>{data._userId.city}</Text>
-                          </Col>
-                          <Col size={15}>
-                            <Text style={{color:'#6C7A89', marginTop: width/20, fontSize: width/27}}>{data._userId.rating}/5 <Icon name="star" style={{fontSize: width/25}}/></Text>
                           </Col>
                         </Grid>
                      </CardItem>
@@ -54,7 +47,7 @@ export default class FoodItemCard extends Component {
                           <Col size={23}><Text style={{color: '#282828'}}>Rp {data.food_price}</Text></Col>
                          </Row>
                          <Row>
-                          <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Qty : {data.food_qty} pcs</Text></Col>
+                          <Col size={77}></Col>
                           <Col size={23}>
                              <Button
                                style={{width: width/5, height: height/25, backgroundColor: '#00B16A'}}
@@ -65,8 +58,7 @@ export default class FoodItemCard extends Component {
                                  setTimeout(() => {
                                     this.props.navigator.push( {title:'FoodDetails',foodId: this.state.foodId})
                                  }, 100)
-
-                             }}>
+                               }}>
                                <Text style={{color: '#FFFFFF'}}>Detail</Text>
                              </Button>
                            </Col>
@@ -82,12 +74,9 @@ export default class FoodItemCard extends Component {
     )
   }
 
-  renderLogin(){
-    return <Spinner color='red' />
-  }
   render(){
     return(
       this.renderScene()
-    );
-    }
+    )
+  }
 }

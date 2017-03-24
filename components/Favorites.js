@@ -1,25 +1,13 @@
 import React, { Component } from 'react';
-import {
-  Container,
-  Footer,
-  FooterTab,
-  Button,
-} from 'native-base';
-import {
-  BackAndroid,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-
+import FoodFavoriteItem from './Home/FoodFavoriteItem'
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { BackAndroid, StyleSheet, Text, View, } from 'react-native';
+import { Container, Footer, FooterTab, Button, } from 'native-base';
 
 const iconhome = (<Icon name="home" size={30} color="#6C7A89" />)
 const iconcamera = (<Icon name="photo-camera" size={30} color="#6C7A89" />)
 const iconfav = (<Icon name="favorite" size={30} color="#b71c1c" />)
 const iconSearch = (<Icon name="search" size={30}color="#6C7A89" />)
-
-import FoodFavoriteItem from './Home/FoodFavoriteItem'
 
 var {width, height} = require('Dimensions').get('window');
 
