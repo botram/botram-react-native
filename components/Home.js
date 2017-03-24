@@ -89,18 +89,14 @@ class Home extends Component {
             </View>
             <Footer >
               <FooterTab style={{backgroundColor:'#ECECEC',}}>
-                <Button onPress={() => {
-                  this.props.navigator.push({title:'FavoritesScene'})
-                }}>
-                  {iconfav}
-                </Button>
-                <Button >
-                  {iconhome}
-                </Button>
+
                 <Button onPress={() => {
                   this.props.navigator.push({title:'SearchScene'})
                 }}>
                 {iconSearch}
+                </Button>
+                <Button >
+                  {iconhome}
                 </Button>
                 <Button onPress={() => {
                   this.props.navigator.push({title:'CameraScene'})

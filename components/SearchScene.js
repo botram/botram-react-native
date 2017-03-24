@@ -84,7 +84,7 @@ export default class Search extends Component {
                             <Col size={23}><Text style={{color: '#282828'}}>Rp {result.food_price}</Text></Col>
                            </Row>
                            <Row>
-                            <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Qty : {result.food_qty} pcs</Text></Col>
+                            <Col size={77}></Col>
                             <Col size={23}>
                                <Button
                                  style={{width: width/5, height: height/25, backgroundColor: '#00B16A'}}
@@ -111,18 +111,13 @@ export default class Search extends Component {
 
         <Footer style={{position: 'absolute', bottom:0, left: 0, right: 0}}>
           <FooterTab style={{backgroundColor:'#ECECEC'}}>
-            <Button onPress={() => {
-              this.props.navigator.push({title:'FavoritesScene'})
-            }}>
-              {iconfav}
-            </Button>
-            <Button onPress={() => {
-              this.props.navigator.popToTop()
-            }}>
-              {iconhome}
-            </Button>
             <Button>
             {iconSearch}
+            </Button>
+            <Button onPress={() => {
+                this.props.navigator.popToTop()
+              }}>
+              {iconhome}
             </Button>
             <Button onPress={() => {
               this.props.navigator.push({title:'CameraScene'})

@@ -79,7 +79,6 @@ export default class FoodDetails extends Component {
                       <Text style={{color: '#282828', marginRight: width/100, fontSize: width/22, fontWeight: 'bold'}}>{this.state.food_title}</Text>
                      </Row>
                      <Row style={styles.rowoption}>
-                      <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Stok : {this.state.food_qty} Porsi</Text></Col>
                       <Col size={23}><Text style={{color: '#282828'}}>Rp {this.state.food_price}</Text></Col>
                      </Row>
                      <Row>

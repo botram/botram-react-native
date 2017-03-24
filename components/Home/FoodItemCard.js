@@ -47,7 +47,7 @@ export default class FoodItemCard extends Component {
                           <Col size={23}><Text style={{color: '#282828'}}>Rp {data.food_price}</Text></Col>
                          </Row>
                          <Row>
-                          <Col size={77}><Text style={{fontSize: width/27, color: '#6C7A89'}}>Qty : {data.food_qty} pcs</Text></Col>
+                          <Col size={77}></Col>
                           <Col size={23}>
                              <Button
                                style={{width: width/5, height: height/25, backgroundColor: '#00B16A'}}
