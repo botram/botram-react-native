@@ -1,9 +1,15 @@
 
 ![botram.png](botram.png)
 
+### Announcement
+
+>This is out final project a [HACKTIV8](https://hacktiv8.com/). After we graduated, the server is already takedown, so it cannot be accessed or downloaded, we make this app just for education, for ourself, thank you ^^
+
+
+
 ### What is Botram ?
 
-Botram is a mobile app for food sharing !, developed by :
+Botram is a mobile app for food sharing ! developed by :
 
   - [sanbastia](https://github.com/sanBastia)
   - [qblol](https://github.com/qblol)
@@ -26,9 +32,3 @@ Botram uses a number of open source projects to work properly:
 Launch applications when needed without upfront commitments.
   * [Amazon web Services Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/?nc2=h_m1) - Easy to begin, Impossible to outgrow
   * [Amazon web Services S3](https://aws.amazon.com/s3/?nc2=h_m1) - Simple, durable, massively scalable object storage
-
-
-
-### Other Information
-
->This is out final project a [HACKTIV8](https://hacktiv8.com/) , as long as we graduated, the server is already takedown, so it cannot be accessed or downloaded, we make this app just for education, for ourself, thank you ^^
