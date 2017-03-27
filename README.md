@@ -31,4 +31,4 @@ Launch applications when needed without upfront commitments.
 
 ### Other Information
 
->This is out final project a [HACKTIV8](https://hacktiv8.com/) , as >long as we graduated, the server is already takedown, so it cannot be >accessed or downloaded, we make this app just for education, for >ourself, thank you ^^
+>This is out final project a [HACKTIV8](https://hacktiv8.com/) , as long as we graduated, the server is already takedown, so it cannot be accessed or downloaded, we make this app just for education, for ourself, thank you ^^
